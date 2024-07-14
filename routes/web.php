@@ -25,7 +25,6 @@ Route::prefix('category')->group(function () {
     Route::post('/update', [CategoryController::class,'update'])->name('category.update');
     Route::get('/delete', [CategoryController::class,'delete'])->name('category.delete');
     Route::get('/trash', [CategoryController::class,'trash'])->name('category.trash');
-    Route::get('/restore', [CategoryController::class,'restore'])->name('category.restore');
 });
 //link lien ket
 Route::prefix('affiliate')->group(function () {
@@ -36,7 +35,6 @@ Route::prefix('affiliate')->group(function () {
     Route::post('/update', [AffiliateController::class,'update'])->name('affiliate.update');
     Route::get('/delete', [AffiliateController::class,'delete'])->name('affiliate.delete');
     Route::get('/trash', [AffiliateController::class,'trash'])->name('affiliate.trash');
-    Route::get('/restore', [AffiliateController::class,'restore'])->name('affiliate.restore');
 });
 //san pham
 Route::prefix('product')->group(function () {
@@ -47,7 +45,6 @@ Route::prefix('product')->group(function () {
     Route::post('/update', [ProductController::class,'update'])->name('product.update');
     Route::get('/delete', [ProductController::class,'delete'])->name('product.delete');
     Route::get('/trash', [ProductController::class,'trash'])->name('product.trash');
-    Route::get('/restore', [ProductController::class,'restore'])->name('product.restore');
     Route::get('/detail', [ProductController::class,'detail'])->name('product.detail');
 });
 //cai dat
@@ -59,5 +56,4 @@ Route::prefix('setting')->group(function () {
     Route::post('/update', [SettingController::class,'update'])->name('setting.update');
     Route::get('/delete', [SettingController::class,'delete'])->name('setting.delete');
     Route::get('/trash', [SettingController::class,'trash'])->name('setting.trash');
-    Route::get('/restore', [SettingController::class,'restore'])->name('setting.restore');
 });

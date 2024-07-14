@@ -281,30 +281,6 @@ class ProductController extends Controller
             ], 500);
         }
     }
-    //khoi phuc
-    function restore(Request $request)
-    {
-        try {
-            $id = $request->get('id');
-            $restore = Product::onlyTrashed()->where('id', $id)->restore(); //khoi phuc
-            if ($restore) {
-                return response()->json(['status' => 'success', 'message' => 'Khôi phục sản phẩm thành công'], 200);
-            } else {
-                return response()->json(['status' => 'error', 'message' => 'Không tồn tại mã sản phẩm ' . $id . ' trong thùng rác'], 404);
-            }
-        } catch (QueryException $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Lỗi truy vấn cơ sở dữ liệu: ' . $e->getMessage()
-            ], 500);
-        } catch (\Exception $e) {
-            // Xử lý các lỗi khác nếu có
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Đã xảy ra lỗi: ' . $e->getMessage()
-            ], 500);
-        }
-    }
     //chi tiet san pham
     function detail(Request $request)
     {
