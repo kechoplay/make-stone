@@ -72,4 +72,33 @@
 <script src="/js/mixitup.min.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
 {{--<script src="/js/owl.video.js"></script>--}}
-<script src="/js/main.js"></script>
+{{-- <script src="/js/main.js"></script> --}}
+<script>
+    $(function(){
+        $('.insert-category').on('submit',function(e){
+            e.preventDefault();
+            let formData = new FormData($(this)[0]);
+            $.ajax({
+                method: "POST",
+                url: "{{route('category.insert')}}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(res){
+                    alert(res.message);
+                },
+                error: function(err){
+                    console.log(err);
+                    if(err.status == 422){
+                        if(err.responseJSON.message.name[0]) alert(err.responseJSON.message.name[0])
+                    }
+                    if(err.status == 500) alert(err.responseJSON.message);
+                }
+            })
+        })
+    })
+</script>
