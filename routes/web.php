@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//danh muc
+//danh muc san pham
 Route::prefix('category')->group(function () {
     Route::get('/list', [CategoryController::class,'list'])->name('category.list');
     Route::get('/create', [CategoryController::class,'create'])->name('category.create');
