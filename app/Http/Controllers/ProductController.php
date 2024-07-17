@@ -108,6 +108,8 @@ class ProductController extends Controller
     public function home()
     {
         $result = $this->productService->list(10);
+        $list = $result['data'];
+        return view('product.index',compact('list'));
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {
