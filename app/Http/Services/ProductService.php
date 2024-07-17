@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Repositories\ProductRepositoryInterface;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -11,11 +12,18 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
+    protected $productRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepositorytService = $productRepository;
+    }
+
     // Lấy danh sách sản phẩm
     public function list($limit = 0)
     {
         try {
-            if(!$limit) $lists = Product::all();
+            if(!$limit) $lists = $this->productRepositorytService->all();
             else $lists = Product::select('id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id')->orderBy('updated_at','desc')->get();
             $listCategory = Category::select('id', 'name')->get();
             return [
@@ -65,34 +73,15 @@ class ProductService
             $all = $request->all();
             $request->validate([
                 'main_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
-                'sub_image' => 'required|array|min:1',
-                'sub_image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
-                'name' => 'required|string|max:255|unique:product,name',
-                'price' => 'required|integer|min:1',
-                'quantity' => 'required|integer|min:1',
-                'description' => 'required',
+                'name' => 'required|string|max:255',
             ], [
                 'main_image.required' => 'Hình ảnh chính là bắt buộc.',
                 'main_image.image' => 'Hình ảnh chính phải là một tệp hình ảnh.',
                 'main_image.mimes' => 'Hình ảnh chính phải có định dạng: jpeg, png, jpg, gif, svg, webp.',
-                'sub_image.required' => 'Hình ảnh phụ là bắt buộc.',
-                'sub_image.min' => 'Bạn phải chọn ít nhất một ảnh phụ.',
-                'sub_image.*.required' => 'Mỗi tệp tin phải là một hình ảnh.',
-                'sub_image.*.image' => 'Mỗi tệp tin phải là định dạng hình ảnh.',
-                'sub_image.*.mimes' => 'Hình ảnh phụ phải có định dạng: jpeg, png, jpg, gif, svg, webp.',
-                'name.required' => 'Tên sản phẩm là bắt buộc.',
                 'name.string' => 'Tên sản phẩm phải là chuỗi ký tự.',
                 'name.max' => 'Tên sản phẩm không được vượt quá 255 ký tự.',
-                'name.unique' => 'Tên sản phẩm đã tồn tại.',
-                'price.required' => 'Giá sản phẩm là bắt buộc.',
-                'price.integer' => 'Giá sản phẩm phải là số nguyên.',
-                'price.min' => 'Giá sản phẩm phải lớn hơn 0.',
-                'quantity.required' => 'Số lượng sản phẩm là bắt buộc.',
-                'quantity.integer' => 'Số lượng sản phẩm phải là số nguyên.',
-                'quantity.min' => 'Số lượng sản phẩm phải lớn hơn 0.',
-                'description.required' => 'Mô tả sản phẩm là bắt buộc.',
             ]);
-            //ktra co thu muc product khong
+
             if (!Storage::disk('public')->exists('product')) {
                 Storage::disk('public')->makeDirectory('product');
             }
@@ -115,7 +104,7 @@ class ProductService
                 }
                 $jsonSubImages = json_encode($arraySubImages);
             }
-            $insert = Product::create([
+            $insert = $this->productRepositorytService->create([
                 'admin_id' => 1,
                 'name' => $all['name'],
                 'price' => $all['price'],
