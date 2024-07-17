@@ -46,6 +46,7 @@ Route::prefix('product')->group(function () {
     Route::get('/delete', [ProductController::class,'delete'])->name('product.delete');
     Route::get('/trash', [ProductController::class,'trash'])->name('product.trash');
     Route::get('/detail', [ProductController::class,'detail'])->name('product.detail');
+    Route::get('/home', [ProductController::class,'home'])->name('product.home');
 });
 //cai dat
 Route::prefix('setting')->group(function () {

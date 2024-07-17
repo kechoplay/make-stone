@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Storage;
 class ProductService
 {
     // Lấy danh sách sản phẩm
-    public function list()
+    public function list($limit = 0)
     {
         try {
-            $lists = Product::all();
+            if(!$limit) $lists = Product::all();
+            else $lists = Product::select('id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id')->orderBy('updated_at','desc')->get();
             $listCategory = Category::select('id', 'name')->get();
             return [
                 'status' => 'success',

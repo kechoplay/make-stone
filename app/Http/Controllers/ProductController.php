@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $this->productService = $productService;
     }
-
+    //trang quan ly
     //danh sach
     public function list()
     {
@@ -54,9 +54,9 @@ class ProductController extends Controller
     public function edit(Request $request)
     {
         $result = $this->productService->getOne($request);
-        $one = $result['data'];
-        $listCategory = $result['listCategory'];
-        return view('product.edit', compact('one', 'listCategory'));
+        // $one = $result['data'];
+        // $listCategory = $result['listCategory'];
+        // return view('product.edit', compact('one', 'listCategory'));
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {
@@ -97,6 +97,17 @@ class ProductController extends Controller
     public function detail(Request $request)
     {
         $result = $this->productService->detail($request);
+        if ($result['status'] == 'success') {
+            return response()->json($result, 200);
+        } else {
+            return response()->json($result, 500);
+        }
+    }
+
+    //trang chu
+    public function home()
+    {
+        $result = $this->productService->list(10);
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {
