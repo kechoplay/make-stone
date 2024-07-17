@@ -72,7 +72,7 @@
 <script src="/js/mixitup.min.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
 {{--<script src="/js/owl.video.js"></script>--}}
-{{-- <script src="/js/main.js"></script> --}}
+<script src="/js/main.js"></script>
 <script>
     $(function(){
         $('.insert-category').on('submit',function(e){
