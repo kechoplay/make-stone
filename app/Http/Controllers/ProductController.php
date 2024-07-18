@@ -28,21 +28,11 @@ class ProductController extends Controller
             return response()->json($result, 500);
         }
     }
-    //form tao san pham
-    public function create()
-    {
-        // $listCategory = Category::select('id', 'name')->get();
-        // return view('product.create', compact('listCategory'));
-        $result = $this->productService->create();
-        if ($result['status'] == 'success') {
-            return response()->json($result, 200);
-        } else {
-            return response()->json($result, 500);
-        }
-    }
+
     //tao san pham
     public function insert(Request $request)
     {
+        dd($request);
         $result = $this->productService->insert($request);
         if ($result['status'] == 'success') {
             return response()->json($result, 200);

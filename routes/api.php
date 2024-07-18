@@ -39,7 +39,6 @@ Route::prefix('affiliate')->group(function () {
 //san pham
 Route::prefix('product')->group(function () {
     Route::get('/list', [ProductController::class, 'list'])->name('product.list');
-    Route::get('/create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/insert', [ProductController::class, 'insert'])->name('product.insert');
     Route::get('/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('/update', [ProductController::class, 'update'])->name('product.update');
