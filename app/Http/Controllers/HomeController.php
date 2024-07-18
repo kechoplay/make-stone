@@ -18,13 +18,20 @@ class HomeController extends Controller
     {
         $result = $this->productService->list(10);
         $list = $result['data'];
-        return view('index',compact('list'));
+        return view('index', compact('list'));
     }
 
     public function shop()
     {
         $result = $this->productService->list();
         $list = $result['data'];
-        return view('shop',compact('list'));
+        return view('shop', compact('list'));
+    }
+
+    public function detail($productId)
+    {
+//        $result = $this->productService->list();
+//        $list = $result['data'];
+        return view('shop_detail');
     }
 }
