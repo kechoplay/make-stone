@@ -16,14 +16,14 @@ class ProductService
 
     public function __construct(ProductRepositoryInterface $productRepository)
     {
-        $this->productRepositorytService = $productRepository;
+        $this->productRepository = $productRepository;
     }
 
     // Lấy danh sách sản phẩm
     public function list($limit = 0)
     {
         try {
-            if(!$limit) $lists = $this->productRepositorytService->all();
+            if(!$limit) $lists = $this->productRepository->all();
             else $lists = Product::select('id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id')->orderBy('updated_at','desc')->get();
             $listCategory = Category::select('id', 'name')->get();
             return [
@@ -104,7 +104,7 @@ class ProductService
                 }
                 $jsonSubImages = json_encode($arraySubImages);
             }
-            $insert = $this->productRepositorytService->create([
+            $insert = $this->productRepository->create([
                 'admin_id' => 1,
                 'name' => $all['name'],
                 'price' => $all['price'],

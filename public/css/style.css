@@ -316,7 +316,7 @@ ol {
 -----------------------*/
 
 .header {
-    background: #000000;
+    background: #FFFFFF;
 }
 
 .header__top {
@@ -480,7 +480,7 @@ ol {
 
 .header__menu ul li a {
     font-size: 18px;
-    color: #ffffff;
+    color: #111111;
     display: block;
     font-weight: 600;
     position: relative;
@@ -973,7 +973,7 @@ ol {
 }
 
 .product__item__pic {
-    height: 500px;
+    height: 260px;
     position: relative;
     background-position: center center;
     border-radius: 10px;

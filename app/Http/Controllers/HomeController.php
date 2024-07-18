@@ -20,4 +20,11 @@ class HomeController extends Controller
         $list = $result['data'];
         return view('index',compact('list'));
     }
+
+    public function shop()
+    {
+        $result = $this->productService->list();
+        $list = $result['data'];
+        return view('shop',compact('list'));
+    }
 }
