@@ -23,18 +23,19 @@ class ProductService
     public function list($limit = 0)
     {
         try {
-            if(!$limit) $lists = $this->productRepository->all();
+            if(!$limit) $lists = $this->productRepository->getAllProduct();
             else $lists = Product::select('id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id')->orderBy('updated_at','desc')->get();
             $listCategory = Category::select('id', 'name')->get();
+
+            if ($lists) {
+                foreach ($lists as $list) {
+                    $list->main_image = env('APP_URL') . $list->main_image;
+                }
+            }
             return [
                 'status' => 'success',
                 'data' => $lists,
                 'listCategory' => $listCategory,
-            ];
-        } catch (QueryException $e) {
-            return [
-                'status' => 'error',
-                'message' => 'Lỗi truy vấn cơ sở dữ liệu: ' . $e->getMessage()
             ];
         } catch (Exception $e) {
             return [
@@ -71,30 +72,23 @@ class ProductService
     {
         try {
             $all = $request->all();
-            $request->validate([
-                'main_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
-                'name' => 'required|string|max:255',
-            ], [
-                'main_image.required' => 'Hình ảnh chính là bắt buộc.',
-                'main_image.image' => 'Hình ảnh chính phải là một tệp hình ảnh.',
-                'main_image.mimes' => 'Hình ảnh chính phải có định dạng: jpeg, png, jpg, gif, svg, webp.',
-                'name.string' => 'Tên sản phẩm phải là chuỗi ký tự.',
-                'name.max' => 'Tên sản phẩm không được vượt quá 255 ký tự.',
-            ]);
 
             if (!Storage::disk('public')->exists('product')) {
                 Storage::disk('public')->makeDirectory('product');
             }
             //luu tru anh chinh
-            if ($request->hasFile('main_image')) {
-                $mainImage = $request->file('main_image');
+            $mainImagePath = '';
+            if ($request->hasFile('mainImage')) {
+                $mainImage = $request->file('mainImage');
                 $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
                 $mainImagePath = $mainImage->storeAs('product', $mainImageName, 'public');
                 $mainImagePath = '/storage/' . $mainImagePath;
             }
+
             // luu tru anh phu
-            if ($request->hasFile('sub_image')) {
-                $subImages = $request->file('sub_image');
+            $jsonSubImages = '';
+            if ($request->hasFile('subImage')) {
+                $subImages = $request->file('subImage');
                 $arraySubImages = [];
                 foreach ($subImages as $image) {
                     $name = time() . '_' . $image->getClientOriginalName();
@@ -107,13 +101,12 @@ class ProductService
             $insert = $this->productRepository->create([
                 'admin_id' => 1,
                 'name' => $all['name'],
-                'price' => $all['price'],
+//                'price' => $all['price'],
                 'description' => $all['description'],
-                'category_id' => $all['category_id'],
-                'quantity' => $all['quantity'],
+                'category_id' => $all['category'],
+//                'quantity' => 1,
                 'main_image' => $mainImagePath,
                 'sub_image' => $jsonSubImages,
-                'bidding_id' => 1,
             ]);
             if ($insert) {
                 return [
@@ -269,37 +262,23 @@ class ProductService
     }
 
     // Xóa tạm thời sản phẩm
-    public function delete(Request $request)
+    public function delete($id)
     {
         try {
-            $id = $request->get('id');
             $one = Product::find($id);
             if ($one) {
-                $delete = $one->delete();
-                if ($delete) {
-                    return [
-                        'status' => 'success',
-                        'message' => 'Xóa thành sản phẩm thành công'
-                    ];
-                } else {
-                    return [
-                        'status' => 'error',
-                        'message' => 'Không thể xóa sản phẩm vào cơ sở dữ liệu'
-                    ];
-                }
+                $one->delete();
+                return [
+                    'status' => 'success',
+                    'message' => 'Xóa thành sản phẩm thành công'
+                ];
             } else {
                 return [
                     'status' => 'error',
                     'message' => 'Không tìm thấy sản phẩm với mã sản phẩm là ' . $id
                 ];
             }
-        } catch (QueryException $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Lỗi truy vấn cơ sở dữ liệu: ' . $e->getMessage()
-            ], 500);
         } catch (\Exception $e) {
-            // Xử lý các lỗi khác nếu có
             return response()->json([
                 'status' => 'error',
                 'message' => 'Đã xảy ra lỗi: ' . $e->getMessage()

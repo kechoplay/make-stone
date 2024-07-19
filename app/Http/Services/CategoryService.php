@@ -36,14 +36,6 @@ class CategoryService
     {
         try {
             $all = $request->all();
-            $request->validate([
-                'name' => 'required|string|max:255|unique:category,name'
-            ], [
-                'name.required' => 'Tên danh mục bắt buộc phải có',
-                'name.string' => 'Tên danh mục phải là chuỗi ký tự',
-                'name.max' => 'Tên danh mục không vượt quá 255 ký tự',
-                'name.unique' => 'Tên danh mục đã tồn tại'
-            ]);
 
             $insert = Category::create([
                 'admin_id' => 1,
@@ -59,11 +51,6 @@ class CategoryService
             return [
                 'status' => 'error',
                 'message' => $e->errors()
-            ];
-        } catch (QueryException $e) {
-            return [
-                'status' => 'error',
-                'message' => 'Lỗi truy vấn cơ sở dữ liệu: ' . $e->getMessage()
             ];
         } catch (Exception $e) {
             return [
@@ -143,38 +130,23 @@ class CategoryService
         }
     }
 
-    // Xóa tạm thời sản phẩm
-    public function delete(Request $request)
+    public function delete($id)
     {
         try {
-            $id = $request->get('id');
             $one = Category::find($id);
             if ($one) {
-                $delete = $one->delete();
-                if ($delete) {
-                    return [
-                        'status' => 'success',
-                        'message' => 'Xóa thành danh mục ' . $one->name . ' thành công'
-                    ];
-                } else {
-                    return [
-                        'status' => 'error',
-                        'message' => 'Không thể xóa danh mục vào cơ sở dữ liệu'
-                    ];
-                }
+                $one->delete();
+                return [
+                    'status' => 'success',
+                    'message' => 'Xóa thành danh mục ' . $one->name . ' thành công'
+                ];
             } else {
                 return [
                     'status' => 'error',
                     'message' => 'Không tìm thấy danh mục với mã danh mục là ' . $id
                 ];
             }
-        } catch (QueryException $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Lỗi truy vấn cơ sở dữ liệu: ' . $e->getMessage()
-            ], 500);
         } catch (\Exception $e) {
-            // Xử lý các lỗi khác nếu có
             return response()->json([
                 'status' => 'error',
                 'message' => 'Đã xảy ra lỗi: ' . $e->getMessage()

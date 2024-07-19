@@ -24,8 +24,8 @@ class HomeController extends Controller
     public function shop()
     {
         $result = $this->productService->list();
-        $list = $result['data'];
-        return view('shop', compact('list'));
+        $productList = $result['data'];
+        return view('shop', compact('productList'));
     }
 
     public function detail($productId)

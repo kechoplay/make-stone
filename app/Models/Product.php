@@ -10,8 +10,12 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'product';
-    protected $primaryKey = 'id';
-    protected $fillable = ['admin_id','name','price','description','category_id','quantity','main_image','sub_image','bidding_id'];
-    protected $dates = ['deleted_at'];
-    public $timestamp = true;
+    protected $guarded = [];
+
+    public $timestamps = true;
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 }

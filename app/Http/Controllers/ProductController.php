@@ -32,7 +32,6 @@ class ProductController extends Controller
     //tao san pham
     public function insert(Request $request)
     {
-        dd($request);
         $result = $this->productService->insert($request);
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
@@ -64,9 +63,9 @@ class ProductController extends Controller
         }
     }
     //xoa san pham
-    public function delete(Request $request)
+    public function delete(Request $request, $id)
     {
-        $result = $this->productService->delete($request);
+        $result = $this->productService->delete($id);
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {

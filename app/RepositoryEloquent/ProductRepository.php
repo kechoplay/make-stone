@@ -11,4 +11,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         return Product::class;
     }
+
+    public function getAllProduct()
+    {
+        return $this->model->with(['category'])->get();
+    }
 }

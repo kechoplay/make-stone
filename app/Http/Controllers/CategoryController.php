@@ -62,9 +62,9 @@ class CategoryController extends Controller
         }
     }
     //xoa danh muc
-    public function delete(Request $request)
+    public function delete(Request $request, $id)
     {
-        $result = $this->categoryService->delete($request);
+        $result = $this->categoryService->delete($id);
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {

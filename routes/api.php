@@ -23,7 +23,7 @@ Route::prefix('category')->group(function () {
     Route::post('/insert', [CategoryController::class, 'insert'])->name('category.insert');
     Route::get('/edit', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/update', [CategoryController::class, 'update'])->name('category.update');
-    Route::get('/delete', [CategoryController::class, 'delete'])->name('category.delete');
+    Route::delete('/delete/{id}', [CategoryController::class, 'delete'])->name('category.delete');
     Route::get('/trash', [CategoryController::class, 'trash'])->name('category.trash');
 });
 //link lien ket
@@ -42,7 +42,7 @@ Route::prefix('product')->group(function () {
     Route::post('/insert', [ProductController::class, 'insert'])->name('product.insert');
     Route::get('/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('/update', [ProductController::class, 'update'])->name('product.update');
-    Route::get('/delete', [ProductController::class, 'delete'])->name('product.delete');
+    Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
     Route::get('/trash', [ProductController::class, 'trash'])->name('product.trash');
     Route::get('/detail', [ProductController::class, 'detail'])->name('product.detail');
 });
