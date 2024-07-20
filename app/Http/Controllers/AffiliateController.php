@@ -46,6 +46,8 @@ class AffiliateController extends Controller
     public function edit(Request $request)
     {
         $result = $this->affiliateService->getOne($request);
+        // $one = $result['data'];
+        // return view('affiliate.edit',compact('one'));
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {

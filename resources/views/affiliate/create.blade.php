@@ -5,7 +5,7 @@
         <form action="{{route('affiliate.insert')}}" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Loại liên kết</label>
+                <label for="exampleInputEmail1" class="form-label d-block">Loại liên kết</label>
                 <select class="form-control" name="type">
                     @php
                         $array = ['facebook','tiktok','instagram'];
@@ -15,8 +15,8 @@
                     @endforeach
                 </select>
             </div>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Đường dẫn</label>
+            <div class="mb-3" style="margin-top: 4rem">
+              <label for="exampleInputEmail1" class="form-label d-block">Đường dẫn</label>
               <input type="text" class="form-control" name="link" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <button type="submit" class="btn btn-primary">Thêm</button>

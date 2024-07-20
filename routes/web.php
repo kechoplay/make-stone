@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\AffiliateController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +13,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('', [HomeController::class, 'index'])->name('home');
+Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
+Route::get('/shop/{productId}', [HomeController::class, 'detail'])->name('detail');

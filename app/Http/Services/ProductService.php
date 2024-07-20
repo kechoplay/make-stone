@@ -4,6 +4,8 @@ namespace App\Http\Services;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Repositories\ProductRepositoryInterface;
+use App\RepositoryEloquent\CategoryRepository;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -11,11 +13,19 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
+    protected $productRepository, $categoryRepository;
+
+    public function __construct(ProductRepositoryInterface $productRepository, CategoryRepository $categoryRepository)
+    {
+        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
+    }
+
     // Lấy danh sách sản phẩm
     public function list($limit = 0)
     {
         try {
-            if(!$limit) $lists = Product::all();
+            if(!$limit) $lists = $this->productRepository->all();
             else $lists = Product::select('id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id')->orderBy('updated_at','desc')->get();
             $listCategory = Category::select('id', 'name')->get();
             return [
@@ -40,7 +50,8 @@ class ProductService
     public function create()
     {
         try {
-            $listCategory = Category::select('id', 'name')->get();
+            $listCategory = $this->categoryRepository->select(['id','name']);
+            // $listCategory = Category::select('id', 'name')->get();
             return [
                 'status' => 'success',
                 'listCategory' => $listCategory,
@@ -65,34 +76,15 @@ class ProductService
             $all = $request->all();
             $request->validate([
                 'main_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
-                'sub_image' => 'required|array|min:1',
-                'sub_image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
-                'name' => 'required|string|max:255|unique:product,name',
-                'price' => 'required|integer|min:1',
-                'quantity' => 'required|integer|min:1',
-                'description' => 'required',
+                'name' => 'required|string|max:255',
             ], [
                 'main_image.required' => 'Hình ảnh chính là bắt buộc.',
                 'main_image.image' => 'Hình ảnh chính phải là một tệp hình ảnh.',
                 'main_image.mimes' => 'Hình ảnh chính phải có định dạng: jpeg, png, jpg, gif, svg, webp.',
-                'sub_image.required' => 'Hình ảnh phụ là bắt buộc.',
-                'sub_image.min' => 'Bạn phải chọn ít nhất một ảnh phụ.',
-                'sub_image.*.required' => 'Mỗi tệp tin phải là một hình ảnh.',
-                'sub_image.*.image' => 'Mỗi tệp tin phải là định dạng hình ảnh.',
-                'sub_image.*.mimes' => 'Hình ảnh phụ phải có định dạng: jpeg, png, jpg, gif, svg, webp.',
-                'name.required' => 'Tên sản phẩm là bắt buộc.',
                 'name.string' => 'Tên sản phẩm phải là chuỗi ký tự.',
                 'name.max' => 'Tên sản phẩm không được vượt quá 255 ký tự.',
-                'name.unique' => 'Tên sản phẩm đã tồn tại.',
-                'price.required' => 'Giá sản phẩm là bắt buộc.',
-                'price.integer' => 'Giá sản phẩm phải là số nguyên.',
-                'price.min' => 'Giá sản phẩm phải lớn hơn 0.',
-                'quantity.required' => 'Số lượng sản phẩm là bắt buộc.',
-                'quantity.integer' => 'Số lượng sản phẩm phải là số nguyên.',
-                'quantity.min' => 'Số lượng sản phẩm phải lớn hơn 0.',
-                'description.required' => 'Mô tả sản phẩm là bắt buộc.',
             ]);
-            //ktra co thu muc product khong
+
             if (!Storage::disk('public')->exists('product')) {
                 Storage::disk('public')->makeDirectory('product');
             }
@@ -115,7 +107,7 @@ class ProductService
                 }
                 $jsonSubImages = json_encode($arraySubImages);
             }
-            $insert = Product::create([
+            $insert = $this->productRepository->create([
                 'admin_id' => 1,
                 'name' => $all['name'],
                 'price' => $all['price'],
@@ -155,8 +147,8 @@ class ProductService
     {
         try {
             $id = $request->get('id');
-            $one = Product::find($id);
-            $listCategory = Category::select('id', 'name')->get();
+            $one = $this->productRepository->find($id);
+            $listCategory = $this->categoryRepository->select(['id','name']);
             return [
                 'status' => 'success',
                 'message' => 'Lấy sản phẩm thành công',
@@ -205,11 +197,13 @@ class ProductService
                 'description.required' => 'Mô tả sản phẩm là bắt buộc.',
             ]);
             //lay thong tin san pham
-            $product = Product::find($all['id']);
+            $product = $this->productRepository->find($all['id']);
             //ktra co thu muc product khong
             if (!Storage::disk('public')->exists('product')) {
                 Storage::disk('public')->makeDirectory('product');
             }
+            $mainImagePath = '';
+            $jsonSubImages = '';
             // luu tru anh chinh
             if ($request->hasFile('main_image')) {
                 //kiem tra anh cu
@@ -220,7 +214,6 @@ class ProductService
                 $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
                 $mainImagePath = $mainImage->storeAs('product', $mainImageName, 'public');
                 $mainImagePath = '/storage/' . $mainImagePath;
-                $product->main_image = $mainImagePath;
             }
             // luu tru anh phu
             if ($request->hasFile('sub_image')) {
@@ -239,16 +232,18 @@ class ProductService
                     $arraySubImages[] = $imagePath;
                 }
                 $jsonSubImages = json_encode($arraySubImages);
-                $product->sub_image = $jsonSubImages;
             }
-            $product->admin_id = 2;
-            $product->name = $all['name'];
-            $product->price = $all['price'];
-            $product->description = $all['description'];
-            $product->category_id = $all['category_id'];
-            $product->quantity = $all['quantity'];
-            $product->bidding_id = 2;
-            $update = $product->save();
+            $update = $this->productRepository->update([
+                'admin_id' => 2,
+                'name' => $all['name'],
+                'price' => $all['price'],
+                'description' => $all['description'],
+                'category_id' => $all['category_id'],
+                'quantity' => $all['quantity'],
+                'bidding_id' => 2,
+                'main_image' => isset($mainImagePath) && $mainImagePath ? $mainImagePath : $product->main_image,
+                'sub_image' => isset($jsonSubImages) && $jsonSubImages ? $jsonSubImages : $product->sub_image,
+            ],$all['id']);
             if ($update) {
                 return [
                     'status' => 'success',
@@ -284,24 +279,16 @@ class ProductService
     {
         try {
             $id = $request->get('id');
-            $one = Product::find($id);
-            if ($one) {
-                $delete = $one->delete();
-                if ($delete) {
-                    return [
-                        'status' => 'success',
-                        'message' => 'Xóa thành sản phẩm thành công'
-                    ];
-                } else {
-                    return [
-                        'status' => 'error',
-                        'message' => 'Không thể xóa sản phẩm vào cơ sở dữ liệu'
-                    ];
-                }
+            $delete = $this->productRepository->delete($id);
+            if ($delete) {
+                return [
+                    'status' => 'success',
+                    'message' => 'Xóa thành sản phẩm thành công'
+                ];
             } else {
                 return [
                     'status' => 'error',
-                    'message' => 'Không tìm thấy sản phẩm với mã sản phẩm là ' . $id
+                    'message' => 'Không thể xóa sản phẩm vào cơ sở dữ liệu'
                 ];
             }
         } catch (QueryException $e) {
@@ -322,7 +309,7 @@ class ProductService
     public function trash()
     {
         try {
-            $data = Product::onlyTrashed()->get();
+            $data = $this->productRepository->allOnlyTrashed();
             return [
                 'status' => 'success',
                 'message' => 'Lấy sản phẩm thành công',
@@ -341,13 +328,12 @@ class ProductService
         }
     }
     // Chi tiết sản phẩm
-    public function detail(Request $request)
+    public function detail($id)
     {
         try {
-            $id = $request->get('id');
-            $product = Product::where('id', $id)->select('id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id')->first();
+            $product = $this->productRepository->find($id,['id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id']);
             $category_id = $product->category_id;
-            $category = Category::where('id', $category_id)->select('id','name')->first();
+            $category = $this->categoryRepository->find($category_id,['id','name']);
             return ['status' => 'success', 'product' => $product, 'category' => $category];
         } catch (QueryException $e) {
             return response()->json([

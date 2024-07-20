@@ -44,8 +44,8 @@ class SettingController extends Controller
     public function edit(Request $request)
     {
         $result = $this->settingService->getOne($request);
-        $one = $result['data'];
-        return view('setting.edit',compact('one'));
+        // $one = $result['data'];
+        // return view('setting.edit',compact('one'));
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {

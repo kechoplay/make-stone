@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $this->productService = $productService;
     }
-    //trang quan ly
+
     //danh sach
     public function list()
     {
@@ -28,18 +28,20 @@ class ProductController extends Controller
             return response()->json($result, 500);
         }
     }
-    //form tao san pham
+
+    //form them san pham
     public function create()
     {
-        // $listCategory = Category::select('id', 'name')->get();
-        // return view('product.create', compact('listCategory'));
-        $result = $this->productService->create();
+        $result = $this->productService->list();
+        $listCategory = $result['listCategory'];
+        return view('product.create',compact('listCategory'));
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {
             return response()->json($result, 500);
         }
     }
+
     //tao san pham
     public function insert(Request $request)
     {
@@ -54,9 +56,9 @@ class ProductController extends Controller
     public function edit(Request $request)
     {
         $result = $this->productService->getOne($request);
-        // $one = $result['data'];
-        // $listCategory = $result['listCategory'];
-        // return view('product.edit', compact('one', 'listCategory'));
+        $one = $result['data'];
+        $listCategory = $result['listCategory'];
+        return view('product.edit', compact('one', 'listCategory'));
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {
@@ -104,16 +106,4 @@ class ProductController extends Controller
         }
     }
 
-    //trang chu
-    public function home()
-    {
-        $result = $this->productService->list(10);
-        $list = $result['data'];
-        return view('product.index',compact('list'));
-        if ($result['status'] == 'success') {
-            return response()->json($result, 200);
-        } else {
-            return response()->json($result, 500);
-        }
-    }
 }
