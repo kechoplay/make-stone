@@ -43,8 +43,8 @@ class CategoryController extends Controller
     public function edit(Request $request)
     {
         $result = $this->categoryService->getOne($request);
-        // $one = $result['data'];
-        // return view('category.edit',compact('one'));
+        $one = $result['data'];
+        return view('category.edit',compact('one'));
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {

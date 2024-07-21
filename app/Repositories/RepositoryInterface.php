@@ -16,6 +16,8 @@ interface RepositoryInterface
      */
     public function find($id, $columns = ['*']);
 
+    public function allOnlyTrashed($columns = ['*']);
+
     public function findOrFail($id);
 
     public function paginate($limit = null, $columns = ['*']);
