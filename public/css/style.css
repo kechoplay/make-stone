@@ -404,7 +404,7 @@ ol {
 }
 
 .header__logo {
-    padding: 30px 0;
+    padding: 0;
 }
 
 .header__logo a {
@@ -547,6 +547,9 @@ ol {
 /*---------------------
   Hero
 -----------------------*/
+.hero {
+    margin-bottom: 50px;
+}
 
 .hero__slider.owl-carousel .owl-item.active .hero__text h6 {
     top: 0;

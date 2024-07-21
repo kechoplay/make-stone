@@ -1,5 +1,30 @@
 @extends('layout.main')
 @section('content')
+    <div id="home-two-banner" class="home-banner-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="hbb-item pb-50">
+                        <a href="/shop">
+                            <img width="555" height="694"
+                                 src="//theme.hstatic.net/200000884739/1001246736/14/htb_img_1.jpg?v=225" alt="Dress"
+                                 loading="lazy">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="hbb-item pb-50">
+                        <a href="/shop">
+                            <img width="555" height="694"
+                                 src="//theme.hstatic.net/200000884739/1001246736/14/htb_img_2.jpg?v=225" alt="Set"
+                                 loading="lazy">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Product Section Begin -->
     <section class="product spad">
         <div class="container">
