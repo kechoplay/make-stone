@@ -28,10 +28,12 @@ class HomeController extends Controller
         return view('shop', compact('productList'));
     }
 
-    public function detail($productId)
+    public function detail($id)
     {
-//        $result = $this->productService->list();
-//        $list = $result['data'];
-        return view('shop_detail');
+        $result = $this->productService->detail($id);
+        $one = $result['product'];
+        $listCategory = $result['product'];
+        $subImages = json_decode($one['sub_image'],true);
+        return view('shop_detail',compact('one','listCategory','subImages'));
     }
 }

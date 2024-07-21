@@ -3,17 +3,25 @@
 namespace App\Http\Services;
 
 use App\Models\Affiliate;
+use App\Repositories\AffiliateRepositoryInterface;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class AffiliateService
 {
+    protected $affiliateRepository;
+
+    public function __construct(AffiliateRepositoryInterface $affiliateRepository)
+    {
+        $this->affiliateRepository = $affiliateRepository;
+    }
+
     // Lấy danh sách link liên kết
     public function list()
     {
         try {
-            $lists = Affiliate::all();
+            $lists = $this->affiliateRepository->all();
             return [
                 'status' => 'success',
                 'data' => $lists
@@ -45,8 +53,7 @@ class AffiliateService
                 'link.required' => 'Đường dẫn url bắt buộc phải có',
                 'link.url' => 'Đường dẫn url phải đúng định dạng URL'
             ]);
-
-            $insert = Affiliate::create([
+            $insert = $this->affiliateRepository->create([
                 'admin_id' => 1,
                 'type' => $all['type'],
                 'link' => $all['link'],
@@ -80,7 +87,8 @@ class AffiliateService
     {
         try {
             $id = $request->get('id');
-            $one = Affiliate::find($id);
+            $one = $this->affiliateRepository->find($id);
+            // $one = Affiliate::find($id);
             return [
                 'status' => 'success',
                 'message' => 'Lấy link liên kết thành công',
@@ -109,15 +117,14 @@ class AffiliateService
                 'link' => 'required|url'
             ], [
                 'type.required' => 'Loại liên kết bắt buộc phải có',
-                'type.unique' => 'Loại liên kết này đã tồn tại',
                 'link.required' => 'Đường dẫn url bắt buộc phải có',
                 'link.url' => 'Đường dẫn url phải đúng định dạng URL'
             ]);
-            $one = Affiliate::find($all['id']);
-            $one->type = $all['type'];
-            $one->link = $all['link'];
-            $one->admin_id = 2;
-            $update = $one->save();
+            $update = $this->affiliateRepository->update([
+                'type' => $all['type'],
+                'link' => $all['link'],
+                'admin_id' => 2,
+            ],$all['id']);
             if ($update) {
                 return [
                     'status' => 'success',
@@ -153,24 +160,16 @@ class AffiliateService
     {
         try {
             $id = $request->get('id');
-            $one = Affiliate::find($id);
-            if ($one) {
-                $delete = $one->delete();
-                if ($delete) {
-                    return [
-                        'status' => 'success',
-                        'message' => 'Xóa thành link liên kết thành công'
-                    ];
-                } else {
-                    return [
-                        'status' => 'error',
-                        'message' => 'Không thể xóa link liên kết vào cơ sở dữ liệu'
-                    ];
-                }
+            $delete = $this->affiliateRepository->delete($id);
+            if ($delete) {
+                return [
+                    'status' => 'success',
+                    'message' => 'Xóa thành link liên kết thành công'
+                ];
             } else {
                 return [
                     'status' => 'error',
-                    'message' => 'Không tìm thấy link liên kết với mã link liên kết là ' . $id
+                    'message' => 'Không thể xóa link liên kết vào cơ sở dữ liệu'
                 ];
             }
         } catch (QueryException $e) {
@@ -191,7 +190,8 @@ class AffiliateService
     public function trash()
     {
         try {
-            $data = Affiliate::onlyTrashed()->get();
+            // $data = Affiliate::onlyTrashed()->get();
+            $data = $this->affiliateRepository->allOnlyTrashed();
             return [
                 'status' => 'success',
                 'message' => 'Lấy link liên kết thành công',

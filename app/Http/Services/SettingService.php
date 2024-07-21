@@ -3,17 +3,24 @@
 namespace App\Http\Services;
 
 use App\Models\Setting;
+use App\Repositories\SettingRepositoryInterface;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class SettingService
 {
+    protected $settingRepository;
+
+    public function __construct(SettingRepositoryInterface $settingRepository)
+    {
+        $this->settingRepository = $settingRepository;
+    }
     // Lấy danh sách cài đặt
     public function list()
     {
         try {
-            $lists = Setting::all();
+            $lists = $this->settingRepository->all();
             return [
                 'status' => 'success',
                 'data' => $lists
@@ -44,7 +51,7 @@ class SettingService
                 'url.required' => 'Đường dẫn url bắt buộc phải có',
                 'url.url' => 'Đường dẫn url phải đúng định dạng URL'
             ]);
-            $insert = Setting::create([
+            $insert = $this->settingRepository->create([
                 'admin_id' => 1,
                 'type' => $all['type'],
                 'url' => $all['url'],
@@ -79,7 +86,7 @@ class SettingService
     {
         try {
             $id = $request->get('id');
-            $one = Setting::find($id);
+            $one = $this->settingRepository->find($id);
             return [
                 'status' => 'success',
                 'message' => 'Lấy cài đặt thành công',
@@ -117,6 +124,12 @@ class SettingService
             $one->enable = isset($all['enable']) && $all['enable'] ? 1 : 0;
             $one->admin_id = 2;
             $update = $one->save();
+            $update = $this->settingRepository->update([
+                'type' => $all['type'],
+                'url' => $all['url'],
+                'enable' => isset($all['enable']) && $all['enable'] ? 1 : 0,
+                'admin_id' => 2,
+            ],$all['id']);
             if ($update) {
                 return [
                     'status' => 'success',
@@ -152,24 +165,16 @@ class SettingService
     {
         try {
             $id = $request->get('id');
-            $one = Setting::find($id);
-            if ($one) {
-                $delete = $one->delete();
-                if ($delete) {
-                    return [
-                        'status' => 'success',
-                        'message' => 'Xóa thành cài đặt thành công'
-                    ];
-                } else {
-                    return [
-                        'status' => 'error',
-                        'message' => 'Không thể xóa cài đặt vào cơ sở dữ liệu'
-                    ];
-                }
+            $delete = $this->settingRepository->delete($id);
+            if ($delete) {
+                return [
+                    'status' => 'success',
+                    'message' => 'Xóa thành cài đặt thành công'
+                ];
             } else {
                 return [
                     'status' => 'error',
-                    'message' => 'Không tìm thấy cài đặt với mã cài đặt là ' . $id
+                    'message' => 'Không thể xóa cài đặt vào cơ sở dữ liệu'
                 ];
             }
         } catch (QueryException $e) {
@@ -190,7 +195,7 @@ class SettingService
     public function trash()
     {
         try {
-            $data = Setting::onlyTrashed()->get();
+            $data = $this->settingRepository->allOnlyTrashed();
             return [
                 'status' => 'success',
                 'message' => 'Lấy cài đặt thành công',

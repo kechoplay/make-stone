@@ -70,6 +70,11 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->model->withTrashed()->findOrFail($id);
     }
 
+    public function allOnlyTrashed($columns = ['*'])
+    {
+        return $this->model->onlyTrashed()->get($columns);
+    }
+
     /**
      * Save a new entity in repository
      * @param array $input

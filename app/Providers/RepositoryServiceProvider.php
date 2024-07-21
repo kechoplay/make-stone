@@ -26,7 +26,19 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->singleton(
             'App\Repositories\ProductRepositoryInterface',
-            'App\RepositoryEloquent\ProductRepository'
+            'App\RepositoryEloquent\ProductRepository',
+        );
+        $this->app->singleton(
+            'App\Repositories\CategoryRepositoryInterface',
+            'App\RepositoryEloquent\CategoryRepository',
+        );
+        $this->app->singleton(
+            'App\Repositories\AffiliateRepositoryInterface',
+            'App\RepositoryEloquent\AffiliateRepository',
+        );
+        $this->app->singleton(
+            'App\Repositories\SettingRepositoryInterface',
+            'App\RepositoryEloquent\SettingRepository',
         );
     }
 }

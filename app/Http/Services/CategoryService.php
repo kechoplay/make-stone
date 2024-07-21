@@ -3,17 +3,25 @@
 namespace App\Http\Services;
 
 use App\Models\Category;
+use App\Repositories\CategoryRepositoryInterface;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class CategoryService
 {
+    protected $categoryRepository;
+
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     // Lấy danh sách danh mục
     public function list()
     {
         try {
-            $lists = Category::all();
+            $lists = $this->categoryRepository->all();
             return [
                 'status' => 'success',
                 'data' => $lists
@@ -36,8 +44,15 @@ class CategoryService
     {
         try {
             $all = $request->all();
-
-            $insert = Category::create([
+            $request->validate([
+                'name' => 'required|string|max:255|unique:category,name'
+            ], [
+                'name.required' => 'Tên danh mục bắt buộc phải có',
+                'name.string' => 'Tên danh mục phải là chuỗi ký tự',
+                'name.max' => 'Tên danh mục không vượt quá 255 ký tự',
+                'name.unique' => 'Tên danh mục đã tồn tại'
+            ]);
+            $insert = $this->categoryRepository->create([
                 'admin_id' => 1,
                 'name' => $all['name'],
             ]);
@@ -65,7 +80,7 @@ class CategoryService
     {
         try {
             $id = $request->get('id');
-            $one = Category::find($id);
+            $one = $this->categoryRepository->find($id);
             return [
                 'status' => 'success',
                 'message' => 'Lấy danh mục thành công',
@@ -96,10 +111,10 @@ class CategoryService
                 'name.string' => 'Tên danh mục phải là chữ cái',
                 'name.max' => 'Tên danh mục không vượt quá 255 chữ cái',
             ]);
-            $one = Category::find($all['id']);
-            $one->name = $all['name'];
-            $one->admin_id = 2;
-            $update = $one->save();
+            $update = $this->categoryRepository->update([
+                'name' => $all['name'],
+                'admin_id' => 2,
+            ],$all['id']);
             if ($update) {
                 return [
                     'status' => 'success',
