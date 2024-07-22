@@ -83,7 +83,7 @@
                         @foreach($productList as $product)
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <a href="/shop/123">
+                                <a href="/products/{{ $product->id }}">
                                     <div class="product__item__pic set-bg" data-setbg="{{ $product->main_image }}">
                                         {{--                                <ul class="product__hover">--}}
                                         {{--                                    <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>--}}

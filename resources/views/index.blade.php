@@ -41,13 +41,15 @@
                 @foreach ($list as $one)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{$one['main_image']}}">
-                                {{--                            <ul class="product__hover">--}}
-                                {{--                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>--}}
-                                {{--                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>--}}
-                                {{--                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>--}}
-                                {{--                            </ul>--}}
-                            </div>
+                            <a href="/products/{{ $one['id'] }}">
+                                <div class="product__item__pic set-bg" data-setbg="{{$one['main_image']}}">
+                                    {{--                            <ul class="product__hover">--}}
+                                    {{--                                <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>--}}
+                                    {{--                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>--}}
+                                    {{--                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>--}}
+                                    {{--                            </ul>--}}
+                                </div>
+                            </a>
                             <div class="product__item__text">
                                 <h3>{{$one['name']}}</h3>
                                 {{--                            <a href="#" class="add-cart">+ Add To Cart</a>--}}
@@ -74,6 +76,9 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            <div class="text-center">
+                <a href="/shop" class="primary-btn">Xem tất </a>
             </div>
         </div>
     </section>

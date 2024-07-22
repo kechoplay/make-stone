@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('start_price');
             $table->dateTime('start_time_bidding');
             $table->dateTime('end_time_bidding');
+            $table->integer('status')->default(1)->comment('1: đang đấu giá, 2: kết thúc đấu giá');
             $table->timestamps();
             $table->softDeletes();
         });

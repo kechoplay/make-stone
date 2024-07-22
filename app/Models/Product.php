@@ -18,4 +18,14 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
+    public function getSubImageAttribute($value)
+    {
+        return empty($value) ? [] : json_decode($value, true);
+    }
+
+    public function getPriceAttribute($value)
+    {
+        return ($value == null || $value == '') ? 0 : number_format($value);
+    }
 }
