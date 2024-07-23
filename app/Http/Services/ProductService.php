@@ -22,7 +22,7 @@ class ProductService
 
     public function __construct(
         ProductRepositoryInterface $productRepository,
-        CategoryRepository $categoryRepository)
+        CategoryRepository         $categoryRepository)
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
@@ -36,11 +36,11 @@ class ProductService
             else $lists = Product::select('id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id')->orderBy('updated_at', 'desc')->get();
             $listCategory = Category::select('id', 'name')->get();
 
-            if ($lists) {
-                foreach ($lists as $list) {
-                    $list->main_image = env('APP_URL') . $list->main_image;
-                }
-            }
+//            if ($lists) {
+//                foreach ($lists as $list) {
+//                    $list->main_image = env('APP_URL') . $list->main_image;
+//                }
+//            }
             return [
                 'status' => 'success',
                 'data' => $lists,
@@ -92,18 +92,19 @@ class ProductService
                 $mainImage = $request->file('mainImage');
                 $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
                 $mainImagePath = $mainImage->storeAs('product', $mainImageName, 'public');
-                $mainImagePath = '/storage/' . $mainImagePath;
+                $mainImagePath = env('APP_URL') . '/storage/' . $mainImagePath;
             }
 
             // luu tru anh phu
             $jsonSubImages = null;
-            if ($request->hasFile('subImage')) {
-                $subImages = $request->file('subImage');
+            $uploadedFiles = $request->file('subImage');
+            if ($uploadedFiles) {
                 $arraySubImages = [];
-                foreach ($subImages as $image) {
-                    $name = time() . '_' . $image->getClientOriginalName();
-                    $imagePath = $image->storeAs('product', $name, 'public');
-                    $imagePath = '/storage/' . $imagePath;
+                foreach ($uploadedFiles as $image) {
+                    $rawImage = $image['raw'];
+                    $name = time() . '_' . $rawImage->getClientOriginalName();
+                    $imagePath = $rawImage->storeAs('product', $name, 'public');
+                    $imagePath = env('APP_URL') . '/storage/' . $imagePath;
                     $arraySubImages[] = $imagePath;
                 }
                 $jsonSubImages = json_encode($arraySubImages);
@@ -111,7 +112,7 @@ class ProductService
             $insert = $this->productRepository->create([
                 'admin_id' => 1,
                 'name' => $all['name'],
-//                'price' => $all['price'],
+                'price' => $all['price'],
                 'description' => $all['description'],
                 'category_id' => $all['category'],
 //                'quantity' => 1,
@@ -169,51 +170,27 @@ class ProductService
     }
 
     // Cập nhật sản phẩm
-    public function update(Request $request)
+    public function update($request, $id)
     {
         try {
-            $all = $request->all();
-            $request->validate([
-                'main_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
-                'sub_image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
-                'name' => 'required|string|max:255',
-                'price' => 'required|integer|min:1',
-                'quantity' => 'required|integer|min:1',
-                'description' => 'required',
-            ], [
-                'main_image.image' => 'Hình ảnh chính phải là một tệp hình ảnh.',
-                'main_image.mimes' => 'Hình ảnh chính phải có định dạng: jpeg, png, jpg, gif, svg, webp.',
-                'sub_image.*.image' => 'Hình ảnh phụ phải là một tệp hình ảnh.',
-                'sub_image.*.mimes' => 'Hình ảnh phụ phải có định dạng: jpeg, png, jpg, gif, svg, webp.',
-                'name.required' => 'Tên sản phẩm là bắt buộc.',
-                'name.string' => 'Tên sản phẩm phải là chuỗi ký tự.',
-                'name.max' => 'Tên sản phẩm không được vượt quá 255 ký tự.',
-                'price.required' => 'Giá sản phẩm là bắt buộc.',
-                'price.integer' => 'Giá sản phẩm phải là số nguyên.',
-                'price.min' => 'Giá sản phẩm phải lớn hơn 0.',
-                'quantity.required' => 'Số lượng sản phẩm là bắt buộc.',
-                'quantity.integer' => 'Số lượng sản phẩm phải là số nguyên.',
-                'quantity.min' => 'Số lượng sản phẩm phải lớn hơn 0.',
-                'description.required' => 'Mô tả sản phẩm là bắt buộc.',
-            ]);
-            //lay thong tin san pham
-            $product = $this->productRepository->find($all['id']);
-            //ktra co thu muc product khong
+            $product = $this->productRepository->find($id);
+
             if (!Storage::disk('public')->exists('product')) {
                 Storage::disk('public')->makeDirectory('product');
             }
-            $mainImagePath = '';
             $jsonSubImages = '';
             // luu tru anh chinh
-            if ($request->hasFile('main_image')) {
+            if ($request->hasFile('newMainImage')) {
                 //kiem tra anh cu
                 if (Storage::disk('public')->exists(str_replace('/storage/', '', $product->main_image))) {
                     Storage::disk('public')->delete(str_replace('/storage/', '', $product->main_image));
                 }
-                $mainImage = $request->file('main_image');
+                $mainImage = $request->file('newMainImage');
                 $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
                 $mainImagePath = $mainImage->storeAs('product', $mainImageName, 'public');
-                $mainImagePath = '/storage/' . $mainImagePath;
+                $mainImagePath = env('APP_URL') . '/storage/' . $mainImagePath;
+            } else {
+                $mainImagePath = $request->mainImage;
             }
             // luu tru anh phu
             if ($request->hasFile('sub_image')) {
@@ -234,16 +211,14 @@ class ProductService
                 $jsonSubImages = json_encode($arraySubImages);
             }
             $update = $this->productRepository->update([
-                'admin_id' => 2,
-                'name' => $all['name'],
-                'price' => $all['price'],
-                'description' => $all['description'],
-                'category_id' => $all['category_id'],
-                'quantity' => $all['quantity'],
-                'bidding_id' => 2,
-                'main_image' => isset($mainImagePath) && $mainImagePath ? $mainImagePath : $product->main_image,
+                'name' => $request->name,
+                'price' => $request->price,
+                'description' => $request->description,
+                'category_id' => $request->category,
+//                'quantity' => $request->quantity,
+                'main_image' => $mainImagePath,
                 'sub_image' => isset($jsonSubImages) && $jsonSubImages ? $jsonSubImages : $product->sub_image,
-            ], $all['id']);
+            ], $id);
             if ($update) {
                 return [
                     'status' => 'success',
@@ -255,18 +230,7 @@ class ProductService
                     'message' => 'Không thể cập nhật sản phẩm vào cơ sở dữ liệu'
                 ];
             }
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $e->errors()
-            ], 422);
-        } catch (QueryException $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Lỗi truy vấn cơ sở dữ liệu: ' . $e->getMessage()
-            ], 500);
         } catch (\Exception $e) {
-            // Xử lý các lỗi khác nếu có
             return response()->json([
                 'status' => 'error',
                 'message' => 'Đã xảy ra lỗi: ' . $e->getMessage()

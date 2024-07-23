@@ -58,7 +58,9 @@
                     <div class="col-lg-8">
                         <div class="product__details__text">
                             <h4>{{$product->name}}</h4>
-                            <h3>{{ $product->price }} VNĐ</h3>
+                            @if($product->price != 0)
+                                <h3>{{ $product->price }} VNĐ</h3>
+                            @endif
                             <div class="product__details__cart__option">
                                 {{--                                <div class="quantity">--}}
                                 {{--                                    <div class="pro-qty">--}}
