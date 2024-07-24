@@ -6,7 +6,7 @@
                 @foreach ($list as $one)
                     <div class="col-12 text-center">
                         <div class="hbb-item">
-                            <a href="/shop">
+                            <a href="/products/{{ $one['id'] }}">
                                 <img width="555" height="694"
                                      src="{{$one['main_image']}}"
                                      alt="Dress"

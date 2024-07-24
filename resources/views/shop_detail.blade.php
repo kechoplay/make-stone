@@ -24,7 +24,7 @@
                             </li>
                             @foreach ($product->sub_image as $key => $subImage)
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#image-tabs-{{ $key+2 }}"
+                                    <a class="nav-link" data-toggle="tab" href="#image-tabs-{{ $key+2 }}"
                                        role="tab">
                                         <div class="product__thumb__pic set-bg" data-setbg="{{ $subImage }}">
                                         </div>

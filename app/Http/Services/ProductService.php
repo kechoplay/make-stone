@@ -33,7 +33,7 @@ class ProductService
     {
         try {
             if (!$limit) $lists = $this->productRepository->getAllProduct();
-            else $lists = Product::select('id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id')->orderBy('updated_at', 'desc')->get();
+            else $lists = Product::select('id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id')->orderBy('id', 'desc')->get();
             $listCategory = Category::select('id', 'name')->get();
 
 //            if ($lists) {
@@ -88,10 +88,11 @@ class ProductService
             }
             //luu tru anh chinh
             $mainImagePath = '';
-            if ($request->hasFile('mainImage')) {
-                $mainImage = $request->file('mainImage');
-                $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
-                $mainImagePath = $mainImage->storeAs('product', $mainImageName, 'public');
+            $mainImage = $request->file('mainImage');
+            if ($mainImage) {
+                $rawImage = $mainImage['raw'];
+                $mainImageName = time() . '_' . $rawImage->getClientOriginalName();
+                $mainImagePath = $rawImage->storeAs('product', $mainImageName, 'public');
                 $mainImagePath = env('APP_URL') . '/storage/' . $mainImagePath;
             }
 
@@ -180,19 +181,38 @@ class ProductService
             }
             $jsonSubImages = '';
             // luu tru anh chinh
-            if ($request->hasFile('newMainImage')) {
-                //kiem tra anh cu
+            Log::info($request->mainImage);
+            $mainImage = $request->mainImage;
+            if (!empty($mainImage['raw'])) {
                 if (Storage::disk('public')->exists(str_replace('/storage/', '', $product->main_image))) {
                     Storage::disk('public')->delete(str_replace('/storage/', '', $product->main_image));
                 }
-                $mainImage = $request->file('newMainImage');
-                $mainImageName = time() . '_' . $mainImage->getClientOriginalName();
-                $mainImagePath = $mainImage->storeAs('product', $mainImageName, 'public');
+                $rawImage = $mainImage['raw'];
+                $mainImageName = time() . '_' . $rawImage->getClientOriginalName();
+                $mainImagePath = $rawImage->storeAs('product', $mainImageName, 'public');
                 $mainImagePath = env('APP_URL') . '/storage/' . $mainImagePath;
             } else {
-                $mainImagePath = $request->mainImage;
+                $mainImagePath = $mainImage['url'];
             }
+
             // luu tru anh phu
+            $uploadedFiles = $request->file('subImage');
+            if ($uploadedFiles) {
+                $arraySubImages = [];
+                foreach ($uploadedFiles as $image) {
+                    if (!empty($image['raw'])) {
+                        $rawImage = $image['raw'];
+                        $name = time() . '_' . $rawImage->getClientOriginalName();
+                        $imagePath = $rawImage->storeAs('product', $name, 'public');
+                        $imagePath = env('APP_URL') . '/storage/' . $imagePath;
+                        $arraySubImages[] = $imagePath;
+                    } else {
+                        $arraySubImages[] = $image['url'];
+                    }
+                }
+                $jsonSubImages = json_encode($arraySubImages);
+            }
+
             if ($request->hasFile('sub_image')) {
                 $oldSubImages = json_decode($product->sub_image, true);
                 foreach ($oldSubImages as $oldImage) {
@@ -212,7 +232,7 @@ class ProductService
             }
             $update = $this->productRepository->update([
                 'name' => $request->name,
-                'price' => $request->price,
+                'price' => str_replace(',', '', $request->price),
                 'description' => $request->description,
                 'category_id' => $request->category,
 //                'quantity' => $request->quantity,
@@ -231,6 +251,7 @@ class ProductService
                 ];
             }
         } catch (\Exception $e) {
+            Log::debug($e);
             return response()->json([
                 'status' => 'error',
                 'message' => 'Đã xảy ra lỗi: ' . $e->getMessage()
