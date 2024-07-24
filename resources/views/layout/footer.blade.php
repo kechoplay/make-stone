@@ -2,10 +2,10 @@
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-6 col-md-6 col-sm-6 text-center">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="#"><img src="/img/footer-logo.png" alt=""></a>
+                        <a href="#"><img src="/img/footer-logo.png" width="200px" alt=""></a>
                     </div>
                     <p>Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
                 </div>
