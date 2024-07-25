@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Male_Fashion Template">
-    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="description" content="PhoHien Jewel - Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn">
+    <meta name="keywords" content="PhoHien Jewel - Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
