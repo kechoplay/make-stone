@@ -29,19 +29,6 @@ class ProductController extends Controller
         }
     }
 
-    //form them san pham
-    public function create()
-    {
-        $result = $this->productService->list();
-        $listCategory = $result['listCategory'];
-        return view('product.create',compact('listCategory'));
-        if ($result['status'] == 'success') {
-            return response()->json($result, 200);
-        } else {
-            return response()->json($result, 500);
-        }
-    }
-
     //tao san pham
     public function insert(Request $request)
     {
@@ -52,23 +39,11 @@ class ProductController extends Controller
             return response()->json($result, 500);
         }
     }
-    //form sua san pham
-    public function edit(Request $request)
-    {
-        $result = $this->productService->getOne($request);
-        $one = $result['data'];
-        $listCategory = $result['listCategory'];
-        return view('product.edit', compact('one', 'listCategory'));
-        if ($result['status'] == 'success') {
-            return response()->json($result, 200);
-        } else {
-            return response()->json($result, 500);
-        }
-    }
+
     //sua san pham
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $result = $this->productService->update($request);
+        $result = $this->productService->update($request, $id);
         if ($result['status'] == 'success') {
             return response()->json($result, 200);
         } else {
@@ -96,14 +71,11 @@ class ProductController extends Controller
         }
     }
     //chi tiet san pham
-    public function detail(Request $request)
+    public function detail(Request $request, $id)
     {
-        $result = $this->productService->detail($request);
-        if ($result['status'] == 'success') {
-            return response()->json($result, 200);
-        } else {
-            return response()->json($result, 500);
-        }
+        $result = $this->productService->detail($id);
+
+        return response()->json(['success' => true, 'data' => $result, 'message' => ''], 200);
     }
 
 }

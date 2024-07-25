@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\ProductService;
+use App\Models\Bidding;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,10 +31,18 @@ class HomeController extends Controller
 
     public function detail($id)
     {
-        $result = $this->productService->detail($id);
-        $one = $result['product'];
-        $listCategory = $result['product'];
-        $subImages = json_decode($one['sub_image'],true);
-        return view('shop_detail',compact('one','listCategory','subImages'));
+        $product = $this->productService->detail($id);
+        $bidding = Bidding::query()->where('product_id', $id)->where('status', 1)->first();
+        $hasBidding = false;
+        if ($bidding) {
+            $hasBidding = true;
+        }
+        return view('shop_detail', compact('product', 'hasBidding'));
+    }
+
+    public function makeOffer(Request $request)
+    {
+        $response = $this->productService->makeOffer($request->all());
+        return response()->json($response);
     }
 }

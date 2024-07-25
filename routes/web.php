@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
-Route::get('/shop/{productId}', [HomeController::class, 'detail'])->name('detail');
+Route::get('/products/{productId}', [HomeController::class, 'detail'])->name('detail');
+Route::post('/products/make-offer', [HomeController::class, 'makeOffer'])->name('makeOffer');

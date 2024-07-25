@@ -404,7 +404,7 @@ ol {
 }
 
 .header__logo {
-    padding: 30px 0;
+    padding: 0;
 }
 
 .header__logo a {
@@ -547,6 +547,9 @@ ol {
 /*---------------------
   Hero
 -----------------------*/
+.hero {
+    margin-bottom: 50px;
+}
 
 .hero__slider.owl-carousel .owl-item.active .hero__text h6 {
     top: 0;
@@ -976,7 +979,6 @@ ol {
     height: 260px;
     position: relative;
     background-position: center center;
-    border-radius: 10px;
 }
 
 .product__item__pic .label {
@@ -3363,6 +3365,10 @@ ol {
     padding: 14px 35px;
 }
 
+.hbb-item {
+    margin-bottom: 30px;
+}
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {
@@ -3392,6 +3398,10 @@ ol {
 
     .testimonial__text {
         padding: 130px 45px 175px;
+    }
+
+    video {
+        height: 500px;
     }
 }
 
@@ -3487,7 +3497,7 @@ ol {
 
 /* Wide Mobile = 480px */
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
     .canvas__open {
         display: block;
         font-size: 22px;
@@ -3726,12 +3736,12 @@ ol {
 
     .hero__slider.owl-carousel .owl-nav button {
         left: 15px;
-        top: 80%;
+        top: 50%;
     }
 
     .hero__slider.owl-carousel .owl-nav button.owl-next {
-        left: 75px;
-        right: 0;
+        /*left: 75px;*/
+        right: 15px;
     }
 
     .banner__item.banner__item--middle {
@@ -3894,6 +3904,10 @@ ol {
     .hero__social {
         margin-top: 180px;
     }
+
+    video {
+        height: 400px;
+    }
 }
 
 /* Small Device = 320px */
@@ -3963,5 +3977,9 @@ ol {
 
     .categories__text:before {
         height: 250px;
+    }
+
+    video {
+        height: 300px;
     }
 }
