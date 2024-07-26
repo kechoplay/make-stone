@@ -14,6 +14,6 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function getAllProduct()
     {
-        return $this->model->with(['category'])->orderBy('id')->get();
+        return $this->model->with(['category', 'bidding'])->orderBy('id', 'desc')->get();
     }
 }

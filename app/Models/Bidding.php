@@ -13,4 +13,7 @@ class Bidding extends Model
     protected $table = 'bidding';
     protected $guarded = [];
     public $timestamps = true;
+
+    CONST STATUS_BIDDING_START = 1;
+    CONST STATUS_BIDDING_CLOSE = 2;
 }

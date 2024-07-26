@@ -78,4 +78,18 @@ class ProductController extends Controller
         return response()->json(['success' => true, 'data' => $result, 'message' => ''], 200);
     }
 
+    public function startBidding(Request $request, $id)
+    {
+        $result = $this->productService->startBidding($request->all(), $id);
+
+        return response()->json($result, 200);
+    }
+
+    public function stopBidding($id)
+    {
+        $result = $this->productService->stopBidding($id);
+
+        return response()->json($result, 200);
+    }
+
 }

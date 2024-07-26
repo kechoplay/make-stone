@@ -7,6 +7,8 @@ use App\Models\BiddingUser;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
+use App\Repositories\BiddingRepositoryInterface;
+use App\Repositories\CategoryRepositoryInterface;
 use App\Repositories\ProductRepositoryInterface;
 use App\RepositoryEloquent\CategoryRepository;
 use Carbon\Carbon;
@@ -18,22 +20,26 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
-    protected $productRepository, $categoryRepository;
+    protected $productRepository;
+    protected $categoryRepository;
+    protected $biddingRepository;
 
     public function __construct(
-        ProductRepositoryInterface $productRepository,
-        CategoryRepository         $categoryRepository)
+        ProductRepositoryInterface  $productRepository,
+        CategoryRepositoryInterface $categoryRepository,
+        BiddingRepositoryInterface  $biddingRepository
+    )
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->biddingRepository = $biddingRepository;
     }
 
     // Lấy danh sách sản phẩm
     public function list($limit = 0)
     {
         try {
-            if (!$limit) $lists = $this->productRepository->getAllProduct();
-            else $lists = Product::select('id', 'category_id', 'name', 'quantity', 'description', 'main_image', 'sub_image', 'bidding_id')->orderBy('id', 'desc')->get();
+            $lists = $this->productRepository->getAllProduct();
             $listCategory = Category::select('id', 'name')->get();
 
 //            if ($lists) {
@@ -325,7 +331,7 @@ class ProductService
                 ]);
             }
 
-            $bidding = Bidding::query()->where('product_id', $data['productId'])->where('status', 1)->first();
+            $bidding = $this->biddingRepository->getFirstIsBidding($data['productId']);
 
             if (empty($bidding)) {
                 return [
@@ -367,6 +373,84 @@ class ProductService
             return [
                 'success' => false,
                 'message' => 'Có lỗi, hãy thử lại sau'
+            ];
+        }
+    }
+
+    public function startBidding($request, $id)
+    {
+        try {
+            $product = $this->productRepository->find($id);
+            if (!$product) {
+                Log::error('K có sản phẩm id: ' . $id);
+                return [
+                    'success' => false,
+                    'message' => 'Sản phẩm k tồn tại'
+                ];
+            }
+
+            $bidding = $this->biddingRepository->getFirstIsBidding($id);
+
+            if (!empty($bidding)) {
+                return [
+                    'success' => false,
+                    'message' => 'Hiện tại sản phẩm đang được đấu giá'
+                ];
+            }
+
+            $this->biddingRepository->create([
+                'product_id' => $id,
+                'start_price' => $request['startPrice'],
+                'start_time_bidding' => Carbon::now()->format('Y-m-d'),
+                'end_time_bidding' => Carbon::now()->modify('+30 days')->format('Y-m-d 23:59:59'),
+                'status' => 1
+            ]);
+
+            return [
+                'success' => true,
+            ];
+        } catch (Exception $exception) {
+            Log::error($exception);
+            return [
+                'success' => false,
+                'message' => 'Error'
+            ];
+        }
+    }
+
+    public function stopBidding($id)
+    {
+        try {
+            $product = $this->productRepository->find($id);
+            if (!$product) {
+                Log::error('K có sản phẩm id: ' . $id);
+                return [
+                    'success' => false,
+                    'message' => 'Sản phẩm k tồn tại'
+                ];
+            }
+
+            $bidding = $this->biddingRepository->getFirstIsBidding($id);
+
+            if (empty($bidding)) {
+                return [
+                    'success' => false,
+                    'message' => 'Hiện tại sản phẩm không được đấu giá'
+                ];
+            }
+
+            $this->biddingRepository->update([
+                'status' => 2
+            ], $bidding->id);
+
+            return [
+                'success' => true,
+            ];
+        } catch (Exception $exception) {
+            Log::error($exception);
+            return [
+                'success' => false,
+                'message' => 'Error'
             ];
         }
     }

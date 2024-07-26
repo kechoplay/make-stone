@@ -19,6 +19,11 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    public function bidding()
+    {
+        return $this->hasOne(Bidding::class, 'product_id', 'id')->where('status', Bidding::STATUS_BIDDING_START);
+    }
+
     public function getSubImageAttribute($value)
     {
         return empty($value) ? [] : json_decode($value, true);

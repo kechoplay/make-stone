@@ -61,7 +61,7 @@
                             @if($product->price != 0)
                                 <h3>{{ $product->price }} VNĐ</h3>
                             @endif
-                            <div class="product__details__cart__option">
+                            <div class="product__details__cart__option text-center">
                                 {{--                                <div class="quantity">--}}
                                 {{--                                    <div class="pro-qty">--}}
                                 {{--                                        <input type="text" value="1">--}}
@@ -69,7 +69,7 @@
                                 {{--                                </div>--}}
                                 @if($hasBidding)
                                     <button type="button" class="primary-btn" data-toggle="modal"
-                                            data-target="#biddingModal">Đấu giá
+                                            data-target="#biddingModal"><img src="/img/bidding.png" style="width: 20px; margin-right: 10px;">Đấu giá
                                     </button>
                                 @endif
                             </div>

@@ -40,5 +40,9 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\SettingRepositoryInterface',
             'App\RepositoryEloquent\SettingRepository',
         );
+        $this->app->singleton(
+            'App\Repositories\BiddingRepositoryInterface',
+            'App\RepositoryEloquent\BiddingRepository',
+        );
     }
 }
