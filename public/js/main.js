@@ -74,28 +74,28 @@
     /*-----------------------
         Hero Slider
     ------------------------*/
-    $(".hero__slider").owlCarousel({
-        items: 6,
-        merge: true,
-        loop: true,
-        video: true,
-        lazyLoad: true,
-        center: true,
-        dots: false,
-        nav: true,
-        navText: ["<span class='arrow_left'><span/>", "<span class='arrow_right'><span/>"],
-        autoHeight: false,
-        autoWidth: false,
-        responsive: {
-            375: {
-                items: 1,
-                height: "200px"
-            },
-            600: {
-                items: 1
-            }
-        }
-    });
+    // $(".hero__slider").owlCarousel({
+    //     items: 6,
+    //     merge: true,
+    //     loop: true,
+    //     video: true,
+    //     lazyLoad: true,
+    //     center: true,
+    //     dots: false,
+    //     nav: true,
+    //     navText: ["<span class='arrow_left'><span/>", "<span class='arrow_right'><span/>"],
+    //     autoHeight: false,
+    //     autoWidth: false,
+    //     responsive: {
+    //         375: {
+    //             items: 1,
+    //             height: "200px"
+    //         },
+    //         600: {
+    //             items: 1
+    //         }
+    //     }
+    // });
 
     /*--------------------------
         Select
