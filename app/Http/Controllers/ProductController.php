@@ -92,4 +92,11 @@ class ProductController extends Controller
         return response()->json($result, 200);
     }
 
+    public function biddingList($id)
+    {
+        $result = $this->productService->getBiddingListUser($id);
+
+        return response()->json($result, 200);
+    }
+
 }

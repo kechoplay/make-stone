@@ -454,4 +454,9 @@ class ProductService
             ];
         }
     }
+
+    public function getBiddingListUser($productId)
+    {
+//        $this->biddingRepository
+    }
 }

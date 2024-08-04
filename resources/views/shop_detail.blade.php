@@ -68,15 +68,14 @@
                                 {{--                                    </div>--}}
                                 {{--                                </div>--}}
                                 @if($hasBidding)
+                                    <p>Thời gian kết thúc đấu giá: {{ $bidding->end_time_bidding }}</p>
                                     <button type="button" class="primary-btn" data-toggle="modal"
-                                            data-target="#biddingModal"><img src="/img/bidding.png" style="width: 20px; margin-right: 10px;">Đấu giá
+                                            data-target="#biddingModal"><img src="/img/bidding.png"
+                                                                             style="width: 20px; margin-right: 10px;">Đấu
+                                        giá
                                     </button>
                                 @endif
                             </div>
-                            {{--                            <div class="product__details__btns__option">--}}
-                            {{--                                <a href="#"><i class="fa fa-heart"></i> add to wishlist</a>--}}
-                            {{--                                <a href="#"><i class="fa fa-exchange"></i> Add To Compare</a>--}}
-                            {{--                            </div>--}}
                         </div>
                     </div>
                 </div>
@@ -101,7 +100,26 @@
                                 </div>
                                 <div class="tab-pane" id="bidding" role="tabpanel">
                                     <div class="product__details__tab__content">
-
+                                        @if($hasBidding)
+                                            <table class="table table-bordered" style="width: 50%; margin: 0 auto">
+                                                <thead>
+                                                <tr>
+                                                    <td style="width: 60%;">Thời gian đặt giá</td>
+                                                    <td>Giá đặt</td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($biddingUsers as $bidding)
+                                                    <tr>
+                                                        <td style="width: 60%;">{{ $bidding->bidding_time }}</td>
+                                                        <td>{{ number_format($bidding->bidding_price) }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        @else
+                                            Không có đấu giá nào
+                                        @endif
                                     </div>
                                 </div>
                             </div>

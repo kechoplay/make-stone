@@ -19,4 +19,19 @@ class BiddingRepository extends BaseRepository implements BiddingRepositoryInter
             ->where('status', Bidding::STATUS_BIDDING_START)
             ->first();
     }
+
+    public function checkHasBiddingRunning($productId)
+    {
+        return $this->model
+            ->where('product_id', $productId)
+            ->where('status', Bidding::STATUS_BIDDING_START)
+            ->first();
+    }
+
+    public function getListBiddingRunning()
+    {
+        return $this->model
+            ->where('status', Bidding::STATUS_BIDDING_START)
+            ->get();
+    }
 }
