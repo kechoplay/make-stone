@@ -9,12 +9,6 @@ use Illuminate\Console\Command;
 
 class CheckExpiredBidding extends Command
 {
-    private $biddingRepository;
-    public function __construct(BiddingRepositoryInterface $biddingRepository)
-    {
-        $this->biddingRepository = $biddingRepository;
-    }
-
     /**
      * The name and signature of the console command.
      *
@@ -32,13 +26,13 @@ class CheckExpiredBidding extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(BiddingRepositoryInterface $biddingRepository)
     {
-        $biddingList = $this->biddingRepository->getListBiddingRunning();
+        $biddingList = $biddingRepository->getListBiddingRunning();
         if ($biddingList) {
             foreach ($biddingList as $bidding) {
                 if (Carbon::now() <= $bidding->end_time_bidding) {
-                    $this->biddingRepository->update([
+                    $biddingRepository->update([
                         'status' => Bidding::STATUS_BIDDING_CLOSE
                     ], $bidding->id);
                 }
