@@ -31,7 +31,7 @@ class CheckExpiredBidding extends Command
         $biddingList = $biddingRepository->getListBiddingRunning();
         if ($biddingList) {
             foreach ($biddingList as $bidding) {
-                if (Carbon::now() <= $bidding->end_time_bidding) {
+                if (Carbon::now() <= Carbon::parse($bidding->end_time_bidding)) {
                     $biddingRepository->update([
                         'status' => Bidding::STATUS_BIDDING_CLOSE
                     ], $bidding->id);
