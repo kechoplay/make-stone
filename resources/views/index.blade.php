@@ -10,7 +10,7 @@
            <div class="hero__slider">
               <div class="item-video">
                    <video width="100%" height="750px" controls>
-                      <source src="youtu.be/Z9BnH_tZPJo">
+                    {{--  <source src="youtu.be/Z9BnH_tZPJo"> --}}
                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Z9BnH_tZPJo?si=aK_6UVs6SucktUm2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         Your browser does not support the video tag.
                     </video>
