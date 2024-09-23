@@ -5,7 +5,7 @@
     </div>
     <!-- Hero Section Begin -->
     <section class="hero">
-        @foreach(range(1, 6) as $item)
+      {{--   @foreach(range(1, 6) as $item)--}}
               {{--  <div class="hero__slider owl-carousel owl-theme">--}}
          {{--  <div class="hero__slider">--}}
              {{-- <div class="item-video">--}}
@@ -16,7 +16,7 @@
                   {{--  </video>--}}
               {{-- </div>--}}
           {{-- </div>--}}
-        @endforeach
+      {{--   @endforeach--}}
     </section>
 
 {{--    <div id="home-two-banner" class="home-banner-box">--}}
