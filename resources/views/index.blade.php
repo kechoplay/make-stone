@@ -10,7 +10,7 @@
 {{--            <div class="hero__slider">--}}
 {{--                <div class="item-video">--}}
 {{--                    <video width="100%" height="750px" controls>--}}
-{{--                        <source src="/img/video{{ $item }}.mp4" type="video/mp4">--}}
+{{--                        <source src="https://youtu.be/Z9BnH_tZPJo">--}}
 {{--                        Your browser does not support the video tag.--}}
 {{--                    </video>--}}
 {{--                </div>--}}
