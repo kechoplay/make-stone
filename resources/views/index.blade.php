@@ -5,8 +5,8 @@
     </div>
     <!-- Hero Section Begin -->
     <section class="hero">
-         <iframe width="80%" height="750" src="https://www.youtube.com/embed/Z9BnH_tZPJo?si=sblamF72lKYyMuWA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <iframe width="80%" height="750" style="margin-bottom: 10px;" src="https://www.youtube.com/embed/6julmDPvrNg?si=tKVrHSwV2ZdsFNJ-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="100%" height="750" src="https://www.youtube.com/embed/Z9BnH_tZPJo?si=sblamF72lKYyMuWA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="100%" height="750" style="margin-bottom: 10px;" src="https://www.youtube.com/embed/6julmDPvrNg?si=tKVrHSwV2ZdsFNJ-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
        
     </section>
 
