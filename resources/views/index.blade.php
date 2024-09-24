@@ -4,19 +4,10 @@
         <img src="/img/image-main.jpg?version={{ config('phohien.version') }}">
     </div>
     <!-- Hero Section Begin -->
-{{--    <section class="hero">--}}
-{{--        @foreach(range(1, 6) as $item)--}}
-{{--            --}}{{--            <div class="hero__slider owl-carousel owl-theme">--}}
-{{--            <div class="hero__slider">--}}
-{{--                <div class="item-video">--}}
-{{--                    <video width="100%" height="750px" controls>--}}
-{{--                        <source src="/img/video{{ $item }}.mp4" type="video/mp4">--}}
-{{--                        Your browser does not support the video tag.--}}
-{{--                    </video>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        @endforeach--}}
-{{--    </section>--}}
+    <section class="hero">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/6julmDPvrNg?si=tKVrHSwV2ZdsFNJ-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Z9BnH_tZPJo?si=sblamF72lKYyMuWA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </section>
 
 {{--    <div id="home-two-banner" class="home-banner-box">--}}
 {{--        <div class="container">--}}
