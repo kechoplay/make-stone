@@ -1928,7 +1928,6 @@ ol {
 -----------------------*/
 
 .footer {
-    background: #111111;
     padding-top: 70px;
 }
 
@@ -1945,7 +1944,7 @@ ol {
 }
 
 .footer__about p {
-    color: #b7b7b7;
+    color: #222222;
     margin-bottom: 30px;
 }
 
