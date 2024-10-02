@@ -1,8 +1,7 @@
 @extends('layout.main')
 @section('content')
-    <div class="image-main" style="position:relative;">
-
-        <img src="/img/image-main.jpg?version={{ config('phohien.version') }}">
+    <div class="image-main">
+        <img src="/img/wrapper.png?version={{ config('phohien.version') }}" >
     </div>
     <!-- Hero Section Begin -->
     <section class="hero">
