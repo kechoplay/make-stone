@@ -10,48 +10,14 @@
                     <p>Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
                 </div>
             </div>
-            <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
-                <div class="footer__widget">
-                    <h6>Contact us</h6>
-                    <ul>
-                        <li><a href="#">Clothing Store</a></li>
-                        <li><a href="#">Trending Shoes</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Sale</a></li>
-                    </ul>
-                </div>
-            </div>
-            {{--            <div class="col-lg-2 col-md-3 col-sm-6">--}}
-            {{--                <div class="footer__widget">--}}
-            {{--                    <h6>Shopping</h6>--}}
-            {{--                    <ul>--}}
-            {{--                        <li><a href="#">Contact Us</a></li>--}}
-            {{--                        <li><a href="#">Payment Methods</a></li>--}}
-            {{--                        <li><a href="#">Delivary</a></li>--}}
-            {{--                        <li><a href="#">Return & Exchanges</a></li>--}}
-            {{--                    </ul>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-            {{--            <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">--}}
-            {{--                <div class="footer__widget">--}}
-            {{--                    <h6>NewLetter</h6>--}}
-            {{--                    <div class="footer__newslatter">--}}
-            {{--                        <p>Be the first to know about new arrivals, look books, sales & promos!</p>--}}
-            {{--                        <form action="#">--}}
-            {{--                            <input type="text" placeholder="Your email">--}}
-            {{--                            <button type="submit"><span class="icon_mail_alt"></span></button>--}}
-            {{--                        </form>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
         </div>
     </div>
 </footer>
 <!-- Footer Section End -->
-<audio autoplay loop id="audio">
-    <source src="/img/audio.mp3" type="audio/mpeg" width="0px" height="0px">
-    Your browser does not support the audio element.
-</audio>
+{{--<audio autoplay loop id="audio">--}}
+{{--    <source src="/img/audio.mp3" type="audio/mpeg" width="0px" height="0px">--}}
+{{--    Your browser does not support the audio element.--}}
+{{--</audio>--}}
 <!-- Js Plugins -->
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
