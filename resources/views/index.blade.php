@@ -85,9 +85,6 @@
                     </div>
                 @endforeach
             </div>
-            <div class="text-center">
-                <a href="/shop" class="primary-btn">Xem tất </a>
-            </div>
         </div>
     </section>
     <!-- Product Section End -->
