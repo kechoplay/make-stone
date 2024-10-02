@@ -5,7 +5,7 @@
             <div class="col-lg-6 col-md-6 col-sm-6 text-center">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="#"><img src="/img/footer-logo.png" width="200px" alt=""></a>
+                        <a href="#"><img src="/img/logo.png" style="height: 200px" alt=""></a>
                     </div>
                     <p>Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
                 </div>
