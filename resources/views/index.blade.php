@@ -84,8 +84,8 @@
             <a href="?page=1" class="@if($page == 1) active @endif">1</a>
             <a href="?page=2" class="@if($page == 2) active @endif">2</a>
             <a href="?page=3" class="@if($page == 3) active @endif">3</a>
-            <a href="?page=4" class="@if($page == 4) active @endif">3</a>
-            <a href="?page=5" class="@if($page == 5) active @endif">3</a>
+            <a href="?page=4" class="@if($page == 4) active @endif">4</a>
+            <a href="?page=5" class="@if($page == 5) active @endif">5</a>
         </div>
     </div>
 @endsection
