@@ -5,9 +5,9 @@
             @if($page != 1)
                 <div class="col-lg-12 col-md-12 col-sm-12 text-center">
                     <div class="footer__about">
-                        <h2 style="color: #af9d4c; font-weight: bold">PHO HIEN</h2>
-                        <h2 style="color: #af9d4c; font-weight: bold">JEWEL</h2>
-                        <p>Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
+                        <h2 style="font-weight: bold">PHO HIEN</h2>
+                        <h2 style="font-weight: bold; margin-bottom: 20px;">JEWEL</h2>
+                        <p style="font-weight: bold">Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
                     </div>
                 </div>
             @endif

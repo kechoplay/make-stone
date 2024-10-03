@@ -6,7 +6,7 @@
         </div>
     @endif
     @if($page == 2)
-        <section class="hero text-center">
+        <section class="hero text-center" style="background-image: url('/img/bg.png'); background-size: cover">
             <iframe width="70%" height="550" style="margin-bottom: 10px;"
                     src="https://www.youtube.com/embed/KqrnsmhV6ao?si=F0lYqEJxBUyuGQnW"
                     title="YouTube video player" frameborder="0"
