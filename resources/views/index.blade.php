@@ -4,6 +4,23 @@
         <div class="image-main">
             <img src="/img/wrapper.png?version={{ config('phohien.version') }}">
         </div>
+    @endif
+    @if($page == 2)
+        <!-- Hero Section Begin -->
+        <section class="hero">
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/KqrnsmhV6ao?si=F0lYqEJxBUyuGQnW"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/4mNDxtux3-Y?si=Pofqe7yFEyD1W4Sz"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+    @endif
+    @if($page == 3)
         <!-- Hero Section Begin -->
         <section class="hero">
             <iframe width="100%" height="750" style="margin-bottom: 10px;"
@@ -16,15 +33,16 @@
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </section>
-    @endif
-    @if($page == 2)
-        <section class="hero">
             <iframe width="100%" height="750" style="margin-bottom: 10px;"
                     src="https://www.youtube.com/embed/WgQl0XOsuz8?si=ZJLaZTluE1QbP8f8"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+    @endif
+    @if($page == 4)
+        <section class="hero">
+
             <iframe width="100%" height="750" style="margin-bottom: 10px;"
                     src="https://www.youtube.com/embed/w3XMVbRWVYQ?si=Q7Vjz7Fengt3U3UE"
                     title="YouTube video player" frameborder="0"
@@ -35,15 +53,15 @@
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </section>
-    @endif
-    @if($page == 3)
-        <section class="hero">
             <iframe width="100%" height="750" style="margin-bottom: 10px;"
                     src="https://www.youtube.com/embed/tpPau-0Hj7U?si=VJzG2zGl2swu_5El"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+    @endif
+    @if($page == 5)
+        <section class="hero">
             <iframe width="100%" height="750" style="margin-bottom: 10px;"
                     src="https://www.youtube.com/embed/8dr92fBNGig?si=KfUr3BAHx8Fq8M97"
                     title="YouTube video player" frameborder="0"
@@ -54,6 +72,11 @@
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/4LbcgOld3dc?si=Y0n6pGm6KoBWQkZE"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </section>
     @endif
     <div class="text-center">
@@ -61,6 +84,8 @@
             <a href="?page=1" class="@if($page == 1) active @endif">1</a>
             <a href="?page=2" class="@if($page == 2) active @endif">2</a>
             <a href="?page=3" class="@if($page == 3) active @endif">3</a>
+            <a href="?page=4" class="@if($page == 4) active @endif">3</a>
+            <a href="?page=5" class="@if($page == 5) active @endif">3</a>
         </div>
     </div>
 @endsection
