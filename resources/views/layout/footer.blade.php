@@ -2,11 +2,15 @@
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                <div class="footer__about">
-                    <p>Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
+            @if($page != 1)
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                    <div class="footer__about">
+                        <h2 style="color: #af9d4c; font-weight: bold">PHO HIEN</h2>
+                        <h2 style="color: #af9d4c; font-weight: bold">JEWEL</h2>
+                        <p>Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 </footer>
@@ -28,7 +32,7 @@
 {{--<script src="/js/owl.video.js"></script>--}}
 <script src="/js/main.js"></script>
 <script>
-    window.addEventListener("click", function(event) {
+    window.addEventListener("click", function (event) {
         $('#audio')[0].play()
     });
 

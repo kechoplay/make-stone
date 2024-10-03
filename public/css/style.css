@@ -3413,6 +3413,10 @@ ol {
         height: 500px;
     }
 
+    iframe {
+        height: 500px;
+    }
+
     .product__item__pic {
         height: 260px;
     }
@@ -3934,6 +3938,10 @@ ol {
         height: 400px;
     }
 
+    iframe {
+        height: 400px;
+    }
+
     .product__item__pic {
         height: 1000px;
     }
@@ -4020,6 +4028,10 @@ ol {
         height: 280px;
     }
 
+    iframe {
+        height: 280px;
+    }
+
     .product__item__pic {
         height: 600px;
     }
@@ -4048,10 +4060,11 @@ ol {
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #ddd;
+    font-size: 12px;
 }
 
 .pagination a.active {
-    background-color: #4CAF50;
+    background-color: #af9d4c;
     color: white;
-    border: 1px solid #4CAF50;
+    border: 1px solid #af9d4c;
 }
