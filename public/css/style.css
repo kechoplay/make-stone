@@ -3940,6 +3940,7 @@ ol {
 
     iframe {
         height: 400px;
+        width: 100%;
     }
 
     .product__item__pic {
@@ -4030,6 +4031,7 @@ ol {
 
     iframe {
         height: 280px;
+        width: 100%;
     }
 
     .product__item__pic {
