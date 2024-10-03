@@ -2,7 +2,7 @@
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
                 <div class="footer__about">
                     <p>Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
                 </div>

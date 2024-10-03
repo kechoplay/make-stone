@@ -1944,8 +1944,9 @@ ol {
 }
 
 .footer__about p {
-    color: #222222;
+    color: #000000;
     margin-bottom: 30px;
+    font-size: 18px;
 }
 
 .footer__widget {
