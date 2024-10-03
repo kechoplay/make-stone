@@ -44,7 +44,7 @@
 </div>
 <!-- Offcanvas Menu End -->
 
-@include('layout.header')
+{{--@include('layout.header')--}}
 
 @yield('content')
 

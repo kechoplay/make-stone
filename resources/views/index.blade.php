@@ -1,91 +1,66 @@
 @extends('layout.main')
 @section('content')
-    <div class="image-main">
-        <img src="/img/wrapper.png?version={{ config('phohien.version') }}" >
-    </div>
-    <!-- Hero Section Begin -->
-    <section class="hero">
-        <iframe width="100%" height="750" style="margin-bottom: 10px;" src="https://www.youtube.com/embed/Z9BnH_tZPJo?si=sblamF72lKYyMuWA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <iframe width="100%" height="750" src="https://www.youtube.com/embed/6julmDPvrNg?si=tKVrHSwV2ZdsFNJ-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </section>
-
-{{--    <div id="home-two-banner" class="home-banner-box">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                @foreach ($list as $one)--}}
-{{--                    <div class="col-12 col-sm-4 col-md-6 text-center">--}}
-{{--                        <div class="hbb-item">--}}
-{{--                            <a href="/products/{{ $one['id'] }}">--}}
-{{--                                <img width="555" height="694"--}}
-{{--                                     src="{{$one['main_image']}}"--}}
-{{--                                     alt="Dress"--}}
-{{--                                     loading="lazy">--}}
-{{--                            </a>--}}
-{{--                            <div class="product__item__text">--}}
-{{--                                <h3>{{$one['name']}}</h3>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                @endforeach--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-    <!-- Product Section Begin -->
-    <section class="product spad">
-        <div class="container">
-{{--            <div class="row">--}}
-{{--                <div class="col-lg-12">--}}
-{{--                    <ul class="filter__controls">--}}
-{{--                        <li class="active" data-filter="*">Best Sellers</li>--}}
-{{--                        <li data-filter=".new-arrivals">New Arrivals</li>--}}
-{{--                        <li data-filter=".hot-sales">Hot Sales</li>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-            <div class="row product__filter">
-                @foreach ($list as $one)
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-12 col-sm-6 mix hot-sales">
-                        <div class="product__item">
-                            <a href="/products/{{ $one['id'] }}">
-                                <div class="product__item__pic set-bg" data-setbg="{{$one['main_image']}}">
-{{--                                    <ul class="product__hover">--}}
-{{--                                        <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>--}}
-{{--                                        <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a>--}}
-{{--                                        </li>--}}
-{{--                                        <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>--}}
-{{--                                    </ul>--}}
-                                </div>
-                            </a>
-                            <div class="product__item__text">
-                                <h5>
-                                    <a href="/products/{{ $one['id'] }}">{{$one['name']}}</a>
-                                </h5>
-{{--                                <a href="#" class="add-cart">+ Add To Cart</a>--}}
-{{--                                <div class="rating">--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                    <i class="fa fa-star-o"></i>--}}
-{{--                                </div>--}}
-{{--                                <h5>{{$one['price']}} VNĐ</h5>--}}
-{{--                                <div class="product__color__select">--}}
-{{--                                    <label for="pc-4">--}}
-{{--                                        <input type="radio" id="pc-4">--}}
-{{--                                    </label>--}}
-{{--                                    <label class="active black" for="pc-5">--}}
-{{--                                        <input type="radio" id="pc-5">--}}
-{{--                                    </label>--}}
-{{--                                    <label class="grey" for="pc-6">--}}
-{{--                                        <input type="radio" id="pc-6">--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+    @if($page == 1)
+        <div class="image-main">
+            <img src="/img/wrapper.png?version={{ config('phohien.version') }}">
         </div>
-    </section>
-    <!-- Product Section End -->
+        <!-- Hero Section Begin -->
+        <section class="hero">
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/exc4RuleOqs?si=8EOt-XPcl4zTnEdS"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/E1qrXPTFu90?si=AJ8EUN9-rbqiHD63"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+    @endif
+    @if($page == 2)
+        <section class="hero">
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/WgQl0XOsuz8?si=ZJLaZTluE1QbP8f8"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/w3XMVbRWVYQ?si=Q7Vjz7Fengt3U3UE"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/RLFztMy0Oik?si=ug5MnJTZsfhqNAsN"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+    @endif
+    @if($page == 3)
+        <section class="hero">
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/tpPau-0Hj7U?si=VJzG2zGl2swu_5El"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/8dr92fBNGig?si=KfUr3BAHx8Fq8M97"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="100%" height="750" style="margin-bottom: 10px;"
+                    src="https://www.youtube.com/embed/HnxMHHwE7yc?si=PREf-gJLhUmuLmsQ"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
+    @endif
+    <div class="text-center">
+        <div class="pagination">
+            <a href="?page=1" class="@if($page == 1) active @endif">1</a>
+            <a href="?page=2" class="@if($page == 2) active @endif">2</a>
+            <a href="?page=3" class="@if($page == 3) active @endif">3</a>
+        </div>
+    </div>
 @endsection

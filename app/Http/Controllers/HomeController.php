@@ -16,11 +16,10 @@ class HomeController extends Controller
         $this->productService = $productService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $result = $this->productService->list(10);
-        $list = $result['data'];
-        return view('index', compact('list'));
+        $page = empty($request->page) ? 1 : $request->page;
+        return view('index', compact('page'));
     }
 
     public function shop()
