@@ -536,6 +536,10 @@ ol {
     top: 3px;
 }
 
+.main-bg {
+    padding: 100px;
+}
+
 .offcanvas-menu-wrapper {
     display: none;
 }
@@ -4031,8 +4035,12 @@ ol {
     }
 
     iframe {
-        height: 280px;
+        height: 200px;
         width: 100%;
+    }
+
+    .main-bg {
+        padding: 80px;
     }
 
     .product__item__pic {

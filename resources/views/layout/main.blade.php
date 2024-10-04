@@ -48,7 +48,7 @@
 
 @yield('content')
 
-@include('layout.footer')
+{{--@include('layout.footer')--}}
 @stack('js')
 </body>
 
