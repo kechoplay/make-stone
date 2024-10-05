@@ -37,6 +37,10 @@
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p style="font-weight: 700;margin-bottom: 20px; display: block; cursor: pointer;"
+                       data-fancybox="gallery" data-src="/001.pdf" data-type="pdf">
+                        Vệt nắng - chế tác Nguyễn Duy Ngọc
+                    </p>
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/E1qrXPTFu90?si=AJ8EUN9-rbqiHD63"
                             title="YouTube video player" frameborder="0"
