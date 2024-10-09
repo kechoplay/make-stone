@@ -11,12 +11,12 @@
                 <a href="?page=3" class="@if($page == 3) active @endif">3</a>
                 <a href="?page=4" class="@if($page == 4) active @endif">4</a>
                 <a href="?page=5" class="@if($page == 5) active @endif">5</a>
-                <a href="?page=5" class="@if($page == 6) active @endif">6</a>
-                <a href="?page=5" class="@if($page == 7) active @endif">7</a>
-                <a href="?page=5" class="@if($page == 8) active @endif">8</a>
-                <a href="?page=5" class="@if($page == 9) active @endif">9</a>
-                <a href="?page=5" class="@if($page == 10) active @endif">10</a>
-                <a href="?page=5" class="@if($page == 11) active @endif">11</a>
+                <a href="?page=6" class="@if($page == 6) active @endif">6</a>
+                <a href="?page=7" class="@if($page == 7) active @endif">7</a>
+                <a href="?page=8" class="@if($page == 8) active @endif">8</a>
+                <a href="?page=9" class="@if($page == 9) active @endif">9</a>
+                <a href="?page=10" class="@if($page == 10) active @endif">10</a>
+                <a href="?page=11" class="@if($page == 11) active @endif">11</a>
             </div>
         </div>
     @else
@@ -218,12 +218,12 @@
                     <a href="?page=3" class="@if($page == 3) active @endif">3</a>
                     <a href="?page=4" class="@if($page == 4) active @endif">4</a>
                     <a href="?page=5" class="@if($page == 5) active @endif">5</a>
-                    <a href="?page=5" class="@if($page == 6) active @endif">6</a>
-                    <a href="?page=5" class="@if($page == 7) active @endif">7</a>
-                    <a href="?page=5" class="@if($page == 8) active @endif">8</a>
-                    <a href="?page=5" class="@if($page == 9) active @endif">9</a>
-                    <a href="?page=5" class="@if($page == 10) active @endif">10</a>
-                    <a href="?page=5" class="@if($page == 11) active @endif">11</a>
+                    <a href="?page=6" class="@if($page == 6) active @endif">6</a>
+                    <a href="?page=7" class="@if($page == 7) active @endif">7</a>
+                    <a href="?page=8" class="@if($page == 8) active @endif">8</a>
+                    <a href="?page=9" class="@if($page == 9) active @endif">9</a>
+                    <a href="?page=10" class="@if($page == 10) active @endif">10</a>
+                    <a href="?page=11" class="@if($page == 11) active @endif">11</a>
                 </div>
             </div>
 
