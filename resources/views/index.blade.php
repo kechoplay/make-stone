@@ -29,9 +29,8 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
-                            src="https://www.youtube.com/embed/ShYoPpnUW5g?si=jIJ4t7RxlEFHJRQY"
-                            title="YouTube video player"
-                            frameborder="0"
+                            src="https://www.youtube.com/embed/huITWESyncM?si=t4oX5ZX8UdIrCycn"
+                            title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </section>
@@ -230,12 +229,12 @@
             <footer class="footer">
                 <div class="container">
                     <div class="row">
-                        @if($page != 1)
+                        @if($page > 2)
                             <div class="col-lg-12 col-md-12 col-sm-12 text-center">
                                 <div class="footer__about">
-                                    <h3 style="font-weight: bold">PHO HIEN</h3>
-                                    <h3 style="font-weight: bold; margin-bottom: 20px;">JEWEL</h3>
-                                    <p style="font-weight: bold">Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
+                                    <p style="font-weight: bold; font-size: 14px;">PHO HIEN</p>
+                                    <p style="font-weight: bold; font-size: 14px; margin-bottom: 20px;">JEWEL</p>
+                                    <p style="font-weight: bold; font-size: 14px;">Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
                                 </div>
                             </div>
                         @endif
