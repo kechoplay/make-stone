@@ -229,11 +229,11 @@
             <footer class="footer">
                 <div class="container">
                     <div class="row">
-                        @if($page > 2)
+                        @if($page == 2)
                             <div class="col-lg-12 col-md-12 col-sm-12 text-center">
                                 <div class="footer__about">
-                                    <p style="font-weight: bold; font-size: 14px;">PHO HIEN</p>
-                                    <p style="font-weight: bold; font-size: 14px; margin-bottom: 20px;">JEWEL</p>
+                                    <h4 style="font-weight: bold; font-size: 14px;">PHO HIEN</h4>
+                                    <h4 style="font-weight: bold; font-size: 14px; margin-bottom: 20px;">JEWEL</h4>
                                     <p style="font-weight: bold; font-size: 14px;">Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
                                 </div>
                             </div>
