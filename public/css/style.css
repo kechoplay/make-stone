@@ -4067,7 +4067,8 @@ ol {
 .pagination a {
     color: black;
     float: left;
-    padding: 8px 16px;
+    padding: 8px;
+    margin: 0 5px;
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #ddd;
@@ -4075,7 +4076,7 @@ ol {
 }
 
 .pagination a.active {
-    background-color: #af9d4c;
+    background-color: #000000;
     color: white;
-    border: 1px solid #af9d4c;
+    border: 1px solid #000000;
 }
