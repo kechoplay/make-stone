@@ -37,12 +37,12 @@
             @endif
             @if($page == 3)
                 <section class="hero text-center">
-                    <div style="background: #FFFFFF">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/exc4RuleOqs?si=8EOt-XPcl4zTnEdS"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div style="background: #FFFFFF; width: 70%; margin: 0 auto">
                     <p style="font-weight: 700;margin-bottom: 20px; display: block; cursor: pointer;"
                        data-fancybox="gallery" data-src="/001.pdf" data-type="pdf">
                         Vệt nắng - chế tác Nguyễn Duy Ngọc
