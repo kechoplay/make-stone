@@ -20,7 +20,7 @@
             </div>
         </div>
     @else
-        <div style="background-image: url('/img/bg.png'); background-size: 100% 100%;" class="main-bg">
+        <div style="background-image: url('/img/bg.jpg'); background-size: 100% 100%;" class="main-bg">
             @if($page == 2)
                 <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
