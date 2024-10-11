@@ -37,6 +37,7 @@
             @endif
             @if($page == 3)
                 <section class="hero text-center">
+                    <div style="background: #FFFFFF">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/exc4RuleOqs?si=8EOt-XPcl4zTnEdS"
                             title="YouTube video player" frameborder="0"
@@ -46,6 +47,7 @@
                        data-fancybox="gallery" data-src="/001.pdf" data-type="pdf">
                         Vệt nắng - chế tác Nguyễn Duy Ngọc
                     </p>
+                    </div>
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/E1qrXPTFu90?si=AJ8EUN9-rbqiHD63"
                             title="YouTube video player" frameborder="0"
