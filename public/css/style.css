@@ -3366,6 +3366,12 @@ ol {
     margin-bottom: 30px;
 }
 
+.img-sub {
+    position: absolute;
+    top: 120px;
+    right: 120px;
+}
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {
@@ -3409,7 +3415,7 @@ ol {
         height: 500px;
     }
 
-    .image-main img {
+    .image-main .img-main {
         height: 500px;
     }
 
@@ -3934,7 +3940,7 @@ ol {
         height: 400px;
     }
 
-    .image-main img {
+    .image-main .img-main {
         height: 400px;
     }
 
@@ -4025,13 +4031,19 @@ ol {
         height: 280px;
     }
 
-    .image-main img {
+    .image-main .img-main {
         height: 280px;
         width: 100%;
     }
 
     .image-main>div {
-        width: 100%;
+        width: 100% !important;
+    }
+
+    .img-sub {
+        position: absolute;
+        top: 120px;
+        right: 120px;
     }
 
     iframe {
