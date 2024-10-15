@@ -3368,8 +3368,9 @@ ol {
 
 .img-sub {
     position: absolute;
-    top: 120px;
-    right: 120px;
+    top: 86px;
+    width: 50px;
+    right: 86px;
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
