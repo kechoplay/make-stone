@@ -29,11 +29,11 @@
 <script src="/js/jquery.slicknav.js"></script>
 <script src="/js/mixitup.min.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
-{{--<script src="/js/owl.video.js"></script>--}}
+<script src="/js/owl.video.js"></script>
 <script src="/js/main.js"></script>
 <script>
-    $(document).on('click', '#img-sub', function () {
+    function openAudio() {
         $('#audio')[0].play()
-    })
+    }
 
 </script>
