@@ -50,6 +50,10 @@
 @yield('content')
 
 {{--@include('layout.footer')--}}
+<audio autoplay loop id="audio">
+    <source src="/img/audio.mp3" type="audio/mpeg" width="0px" height="0px">
+    Your browser does not support the audio element.
+</audio>
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.nice-select.min.js"></script>
@@ -69,6 +73,9 @@
         },
         animated: true
     });
+    function openAudio() {
+        $('#audio')[0].play()
+    }
 </script>
 @stack('js')
 </body>
