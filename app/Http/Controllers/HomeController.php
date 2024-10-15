@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\ProductService;
 use App\Models\Bidding;
 use App\Models\BiddingUser;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,7 +20,15 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $page = empty($request->page) ? 1 : $request->page;
-        return view('index', compact('page'));
+        $videoFirstPage = Video::query()->where('type', 0)->limit(2)->get();
+        $totalVideoNextPage = Video::query()->where('type', 1)->count();
+        $totalPage = ($totalVideoNextPage / 3) + 3;
+        $videoNextPage = null;
+        if ($page > 2) {
+            $videoNextPage = Video::query()->where('type', 1)->limit(3)->offset((($page - 3) * 3))->get();
+        }
+
+        return view('index', compact('page', 'videoFirstPage', 'totalPage', 'videoNextPage'));
     }
 
     public function shop()

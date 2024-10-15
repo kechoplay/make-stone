@@ -44,5 +44,9 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\BiddingRepositoryInterface',
             'App\RepositoryEloquent\BiddingRepository',
         );
+        $this->app->singleton(
+            'App\Repositories\VideoRepositoryInterface',
+            'App\RepositoryEloquent\VideoRepository',
+        );
     }
 }

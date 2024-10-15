@@ -4,6 +4,7 @@ use App\Http\Controllers\AffiliateController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,4 +56,14 @@ Route::prefix('setting')->group(function () {
     Route::post('/update', [SettingController::class, 'update'])->name('setting.update');
     Route::get('/delete', [SettingController::class, 'delete'])->name('setting.delete');
     Route::get('/trash', [SettingController::class, 'trash'])->name('setting.trash');
+});
+
+Route::prefix('video')->group(function () {
+    Route::get('/list', [VideoController::class, 'list'])->name('video.list');
+    Route::get('/create', [VideoController::class, 'create'])->name('video.create');
+    Route::post('/insert', [VideoController::class, 'insert'])->name('video.insert');
+    Route::get('/{id}', [VideoController::class, 'detail'])->name('video.detail');
+    Route::get('/edit', [VideoController::class, 'edit'])->name('video.edit');
+    Route::post('/update/{id}', [VideoController::class, 'update'])->name('video.update');
+    Route::delete('/delete/{id}', [VideoController::class, 'delete'])->name('video.delete');
 });

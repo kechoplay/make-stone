@@ -548,6 +548,11 @@ ol {
     display: none;
 }
 
+iframe {
+    width: 70%;
+    height: 550px;
+    margin-bottom: 10px;
+}
 /*---------------------
   Hero
 -----------------------*/
