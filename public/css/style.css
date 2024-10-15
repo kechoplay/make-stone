@@ -3368,9 +3368,9 @@ ol {
 
 .img-sub {
     position: absolute;
-    top: 86px;
-    width: 50px;
-    right: 86px;
+    top: 116px;
+    width: 100px;
+    right: 46%;
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
@@ -4044,7 +4044,8 @@ ol {
     .img-sub {
         position: absolute;
         top: 34px;
-        right: 34px;
+        right: 46%;
+        width: 50px;
     }
 
     iframe {
