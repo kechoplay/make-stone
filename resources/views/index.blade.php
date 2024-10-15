@@ -4,7 +4,7 @@
         <div class="image-main">
             <div style="width: 70%; margin: 0 auto; position: relative">
                 <img class="img-main" src="/img/wrapper.png?version={{ config('phohien.version') }}">
-                <img class="img-sub" src="/img/sub-img.png?version={{ config('phohien.version') }}">
+                <img class="img-sub" id="img-sub" src="/img/sub-img.png?version={{ config('phohien.version') }}">
             </div>
         </div>
         <div class="text-center">

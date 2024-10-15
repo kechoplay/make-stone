@@ -15,10 +15,10 @@
     </div>
 </footer>
 <!-- Footer Section End -->
-{{--<audio autoplay loop id="audio">--}}
-{{--    <source src="/img/audio.mp3" type="audio/mpeg" width="0px" height="0px">--}}
-{{--    Your browser does not support the audio element.--}}
-{{--</audio>--}}
+<audio autoplay loop id="audio">
+    <source src="/img/audio.mp3" type="audio/mpeg" width="0px" height="0px">
+    Your browser does not support the audio element.
+</audio>
 <!-- Js Plugins -->
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
@@ -32,8 +32,8 @@
 {{--<script src="/js/owl.video.js"></script>--}}
 <script src="/js/main.js"></script>
 <script>
-    window.addEventListener("click", function (event) {
+    $(document).on('click', '#img-sub', function () {
         $('#audio')[0].play()
-    });
+    })
 
 </script>
