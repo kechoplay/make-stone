@@ -22,7 +22,7 @@
             </div>
         </div>
     @else
-        <div style="background-image: url('/img/bg.png'); background-size: 100% 100%;" class="main-bg">
+        <div style="background-image: url('/img/bg.jpg'); background-size: 100% 100%;" class="main-bg">
             @if($page == 2)
                 <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
@@ -38,16 +38,18 @@
                 </section>
             @endif
             @if($page == 3)
-                <section class="hero text-center" style="padding-top: 50px">
+                <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/exc4RuleOqs?si=8EOt-XPcl4zTnEdS"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div style="background: #FFFFFF; width: 70%; margin: 0 auto">
                     <p style="font-weight: 700;margin-bottom: 20px; display: block; cursor: pointer;"
                        data-fancybox="gallery" data-src="/001.pdf" data-type="pdf">
                         Vệt nắng - chế tác Nguyễn Duy Ngọc
                     </p>
+                    </div>
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/E1qrXPTFu90?si=AJ8EUN9-rbqiHD63"
                             title="YouTube video player" frameborder="0"
@@ -61,7 +63,7 @@
                 </section>
             @endif
             @if($page == 4)
-                <section class="hero text-center" style="padding-top: 50px">
+                <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/w3XMVbRWVYQ?si=Q7Vjz7Fengt3U3UE"
                             title="YouTube video player" frameborder="0"
@@ -80,7 +82,7 @@
                 </section>
             @endif
             @if($page == 5)
-                <section class="hero text-center" style="padding-top: 50px">
+                <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/8dr92fBNGig?si=KfUr3BAHx8Fq8M97"
                             title="YouTube video player" frameborder="0"
@@ -99,7 +101,7 @@
                 </section>
             @endif
             @if($page == 6)
-                <section class="hero text-center" style="padding-top: 50px">
+                <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/LDqcyoXtqRo?si=Ixc4YYDpHaB31R8s"
                             title="YouTube video player" frameborder="0"
@@ -118,7 +120,7 @@
                 </section>
             @endif
             @if($page == 7)
-                <section class="hero text-center" style="padding-top: 50px">
+                <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/YMLExfuZI5k?si=QTyUBFdNMYP8zAq6"
                             title="YouTube video player" frameborder="0"
@@ -137,7 +139,7 @@
                 </section>
             @endif
             @if($page == 8)
-                <section class="hero text-center" style="padding-top: 50px">
+                <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/Qr8SGQjhmS0?si=zW7PEwAr_tengYfb"
                             title="YouTube video player" frameborder="0"
@@ -156,7 +158,7 @@
                 </section>
             @endif
             @if($page == 9)
-                <section class="hero text-center" style="padding-top: 50px">
+                <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/zFyvxqDszXM?si=d_xd5BTS9zFK79BE"
                             title="YouTube video player" frameborder="0"
@@ -175,7 +177,7 @@
                 </section>
             @endif
             @if($page == 10)
-                <section class="hero text-center" style="padding-top: 50px">
+                <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/xMhWwKcOr1c?si=moPB6-1kYw8QMECP"
                             title="YouTube video player" frameborder="0"
@@ -194,7 +196,7 @@
                 </section>
             @endif
             @if($page == 11)
-                <section class="hero text-center" style="padding-top: 50px">
+                <section class="hero text-center">
                     <iframe width="70%" height="550" style="margin-bottom: 10px;"
                             src="https://www.youtube.com/embed/QUVZsMtMfm8?si=zgjTCIjaZICjvrV9"
                             title="YouTube video player" frameborder="0"
