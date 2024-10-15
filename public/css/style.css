@@ -3369,7 +3369,7 @@ ol {
 .img-sub {
     position: absolute;
     top: 116px;
-    width: 100px;
+    width: 80px;
     right: 46%;
 }
 
@@ -4045,7 +4045,7 @@ ol {
         position: absolute;
         top: 34px;
         right: 46%;
-        width: 50px;
+        width: 30px;
     }
 
     iframe {
