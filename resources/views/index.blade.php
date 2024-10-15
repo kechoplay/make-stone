@@ -2,7 +2,9 @@
 @section('content')
     @if($page == 1)
         <div class="image-main">
-            <img src="/img/wrapper.png?version={{ config('phohien.version') }}">
+            <div style="width: 70%; margin: 0 auto">
+                <img src="/img/wrapper.png?version={{ config('phohien.version') }}">
+            </div>
         </div>
         <div class="text-center">
             <div class="pagination">
@@ -234,7 +236,8 @@
                                 <div class="footer__about">
                                     <h4 style="font-weight: bold; font-size: 14px;">PHO HIEN</h4>
                                     <h4 style="font-weight: bold; font-size: 14px; margin-bottom: 20px;">JEWEL</h4>
-                                    <p style="font-weight: bold; font-size: 14px;">Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
+                                    <p style="font-weight: bold; font-size: 14px;">Tìm kiếm, thưởng thức vẻ đẹp ngay bên
+                                        bạn</p>
                                 </div>
                             </div>
                         @endif
