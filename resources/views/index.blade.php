@@ -31,7 +31,7 @@
                         <div style="background: #FFFFFF; width: 70%; margin: 0 auto">
                             @if($video->image)
                                 <p style="font-weight: 700;margin-bottom: 20px; display: block; cursor: pointer;"
-                                   data-fancybox="gallery" data-src="/001.pdf" data-type="pdf">
+                                   data-fancybox="gallery" data-src="{{ $video->image }}" data-type="pdf">
                                     {{ $video->name }}
                                 </p>
                             @else
