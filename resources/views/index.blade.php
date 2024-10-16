@@ -29,10 +29,16 @@
                     @foreach($videoNextPage as $video)
                         {!! $video->iframe !!}
                         <div style="background: #FFFFFF; width: 70%; margin: 0 auto">
-                            <p style="font-weight: 700;margin-bottom: 20px; display: block; cursor: pointer;"
-                               data-fancybox="gallery" data-src="/001.pdf" data-type="pdf">
-                                {{ $video->name }}
-                            </p>
+                            @if($video->image)
+                                <p style="font-weight: 700;margin-bottom: 20px; display: block; cursor: pointer;"
+                                   data-fancybox="gallery" data-src="/001.pdf" data-type="pdf">
+                                    {{ $video->name }}
+                                </p>
+                            @else
+                                <p style="font-weight: 700;margin-bottom: 20px; display: block; cursor: pointer;">
+                                    {{ $video->name }}
+                                </p>
+                            @endif
                         </div>
                     @endforeach
                 </section>
