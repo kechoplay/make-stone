@@ -3,9 +3,8 @@
     @if($page == 1)
         <div class="image-main">
             <div style="width: 70%; margin: 0 auto; position: relative">
-                <img class="img-main" src="/img/wrapper.png?version={{ config('phohien.version') }}">
-                <img class="img-sub" id="img-sub" src="/img/sub-img.png?version={{ config('phohien.version') }}"
-                     onclick="openAudio()">
+                <img class="img-main" src="/img/wrapper.gif?version={{ config('phohien.version') }}">
+                <div class="img-sub" id="img-sub" onclick="openAudio()"></div>
             </div>
         </div>
         <div class="text-center">

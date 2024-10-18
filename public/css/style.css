@@ -3373,9 +3373,11 @@ iframe {
 
 .img-sub {
     position: absolute;
-    top: 160px;
+    top: 80px;
     width: 80px;
-    right: 50%;
+    height: 80px;
+    opacity: 0;
+    right: 46%;
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
@@ -4048,9 +4050,10 @@ iframe {
 
     .img-sub {
         position: absolute;
-        top: 50px;
-        right: 50%;
-        width: 30px;
+        top: 36px;
+        height: 35px;
+        right: 46%;
+        width: 35px;
     }
 
     iframe {

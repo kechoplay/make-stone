@@ -74,7 +74,10 @@
         animated: true
     });
     function openAudio() {
-        $('#audio')[0].play()
+        if ($('#audio')[0].paused)
+            $('#audio')[0].play()
+        else
+            $('#audio')[0].pause()
     }
 </script>
 @stack('js')
