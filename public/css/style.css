@@ -3434,6 +3434,13 @@ iframe {
     .product__item__pic {
         height: 260px;
     }
+
+    .img-sub {
+        top: 65px;
+        height: 60px;
+        right: 46%;
+        width: 60px;
+    }
 }
 
 /* Tablet Device = 768px */
@@ -3527,6 +3534,13 @@ iframe {
 
     .product__item__pic {
         height: 300px;
+    }
+
+    .img-sub {
+        top: 50px;
+        height: 50px;
+        right: 45%;
+        width: 50px;
     }
 }
 
