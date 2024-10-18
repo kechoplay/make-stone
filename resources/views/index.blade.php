@@ -11,7 +11,7 @@
         <div class="text-center">
             <div class="pagination">
                 @foreach(range(1, $totalPage) as $pages)
-                    <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
+                    <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif" style="color: #000000">{{ $pages }}</a>
                 @endforeach
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <section class="hero text-center">
                     @foreach($videoNextPage as $video)
                         {!! $video->iframe !!}
-                        <div style="background: #FFFFFF; width: 70%; margin: 0 auto">
+                        <div style="width: 70%; margin: 0 auto">
                             <p style="font-weight: 700;margin-bottom: 20px; display: block; cursor: pointer;"
                                data-fancybox="gallery" data-src="/001.pdf" data-type="pdf">
                                 {{ $video->name }}
