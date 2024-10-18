@@ -7,6 +7,8 @@ use App\Repositories\VideoRepositoryInterface;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class VideoService
 {
@@ -44,15 +46,28 @@ class VideoService
             ], [
                 'name.required' => 'Hãy nhập iframe',
             ]);
+            if (!Storage::disk('public')->exists('video')) {
+                Storage::disk('public')->makeDirectory('video');
+            }
+            //luu tru anh chinh
+            $mainImagePath = '';
+            $mainImage = $request->file('image');
+            Log::debug($mainImage);
+            if ($mainImage) {
+                $rawImage = $mainImage['raw'];
+                $mainImageName = time() . '_' . $rawImage->getClientOriginalName();
+                $mainImagePath = $rawImage->storeAs('video', $mainImageName, 'public');
+                $mainImagePath = env('APP_URL') . '/storage/' . $mainImagePath;
+            }
             $insert = $this->videoRepository->create([
                 'name' => $all['name'],
                 'iframe' => $all['iframe'],
                 'type' => $all['type'],
+                'image' => $mainImagePath
             ]);
             if ($insert) {
                 return [
                     'status' => 'success',
-                    'message' => 'Thêm danh mục ' . $all['name'] . ' thành công'
                 ];
             }
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -61,6 +76,7 @@ class VideoService
                 'message' => $e->errors()
             ];
         } catch (Exception $e) {
+            Log::error($e);
             return [
                 'status' => false,
                 'message' => 'Đã xảy ra lỗi: ' . $e->getMessage()
@@ -96,15 +112,29 @@ class VideoService
     {
         try {
             $all = $request->all();
+            $video = $this->videoRepository->find($id);
+            $mainImage = $request->image;
+            if (!empty($mainImage['raw'])) {
+                if (Storage::disk('public')->exists(str_replace('/storage/', '', $video->image))) {
+                    Storage::disk('public')->delete(str_replace('/storage/', '', $video->image));
+                }
+                $rawImage = $mainImage['raw'];
+                $mainImageName = time() . '_' . $rawImage->getClientOriginalName();
+                $mainImagePath = $rawImage->storeAs('product', $mainImageName, 'public');
+                $mainImagePath = env('APP_URL') . '/storage/' . $mainImagePath;
+            } else {
+                $mainImagePath = $mainImage['url'];
+            }
+
             $update = $this->videoRepository->update([
                 'name' => $all['name'],
                 'iframe' => $all['iframe'],
                 'type' => $all['type'],
+                'image' => $mainImagePath
             ], $id);
             if ($update) {
                 return [
                     'status' => true,
-                    'message' => 'Cập nhật danh mục thành ' . $all['name'] . ' thành công'
                 ];
             } else {
                 return [
@@ -118,7 +148,7 @@ class VideoService
                 'message' => $e->errors()
             ], 422);
         } catch (\Exception $e) {
-            // Xử lý các lỗi khác nếu có
+            Log::error($e);
             return response()->json([
                 'status' => false,
                 'message' => 'Đã xảy ra lỗi: ' . $e->getMessage()
