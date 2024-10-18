@@ -28,7 +28,7 @@
                 <section class="hero text-center">
                     @foreach($videoNextPage as $video)
                         {!! $video->iframe !!}
-                        <div style="background: #FFFFFF; width: 70%; margin: 0 auto">
+                        <div style="width: 70%; margin: 0 auto">
                             @if($video->image)
                                 <p style="font-weight: 700;margin-bottom: 20px; display: block; cursor: pointer;"
                                    data-fancybox="gallery" data-src="{{ $video->image }}" data-type="pdf">
