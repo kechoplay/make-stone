@@ -3373,11 +3373,11 @@ iframe {
 
 .img-sub {
     position: absolute;
-    top: 80px;
-    width: 80px;
-    height: 80px;
+    top: 110px;
+    width: 65px;
+    height: 65px;
     opacity: 0;
-    right: 46%;
+    right: 48%;
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
@@ -3436,10 +3436,10 @@ iframe {
     }
 
     .img-sub {
-        top: 65px;
-        height: 60px;
-        right: 46%;
-        width: 60px;
+        top: 95px;
+        height: 50px;
+        right: 48%;
+        width: 50px;
     }
 }
 
@@ -3537,10 +3537,10 @@ iframe {
     }
 
     .img-sub {
-        top: 50px;
-        height: 50px;
-        right: 45%;
-        width: 50px;
+        top: 75px;
+        height: 40px;
+        right: 48%;
+        width: 40px;
     }
 }
 
@@ -4063,10 +4063,9 @@ iframe {
     }
 
     .img-sub {
-        position: absolute;
-        top: 36px;
+        top: 47px;
         height: 35px;
-        right: 46%;
+        right: 47%;
         width: 35px;
     }
 

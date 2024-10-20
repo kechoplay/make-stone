@@ -50,7 +50,7 @@
 @yield('content')
 
 {{--@include('layout.footer')--}}
-<audio autoplay loop id="audio">
+<audio loop id="audio">
     <source src="/img/audio.mp3" type="audio/mpeg" width="0px" height="0px">
     Your browser does not support the audio element.
 </audio>
