@@ -10,7 +10,8 @@
         <div class="text-center">
             <div class="pagination">
                 @foreach(range(1, $totalPage) as $pages)
-                    <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif" style="color: #000000">{{ $pages }}</a>
+                    <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif"
+                       style="color: #000000">{{ $pages }}</a>
                 @endforeach
             </div>
         </div>
@@ -44,9 +45,21 @@
             @endif
             <div class="text-center">
                 <div class="pagination">
-                    @foreach(range(1, $totalPage) as $pages)
-                        <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
-                    @endforeach
+                    @if($totalPage <= 5)
+                        @foreach(range(1, $totalPage) as $pages)
+                            <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
+                        @endforeach
+                    @else
+                        @if($page > 1)
+                            <a href="?page={{ $page - 1 }}">{{ $page }}</a>
+                        @endif
+                        @foreach(range(1, 5) as $pages)
+                            <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
+                        @endforeach
+                        @if($page < $totalPage)
+                            <a href="?page={{ $page + 1 }}">{{ $page }}</a>
+                        @endif
+                    @endif
                 </div>
             </div>
 
