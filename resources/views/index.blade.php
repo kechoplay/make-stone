@@ -51,13 +51,13 @@
                         @endforeach
                     @else
                         @if($page > 1)
-                            <a href="?page={{ $page - 1 }}">{{ $page }}</a>
+                            <a href="?page={{ $page - 1 }}">>></a>
                         @endif
-                        @foreach(range(1, 5) as $pages)
+                        @foreach(range($page, $page + 5) as $pages)
                             <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
                         @endforeach
                         @if($page < $totalPage)
-                            <a href="?page={{ $page + 1 }}">{{ $page }}</a>
+                            <a href="?page={{ $page + 1 }}"><<</a>
                         @endif
                     @endif
                 </div>
