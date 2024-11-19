@@ -11,19 +11,21 @@
             <div class="pagination">
                 @if($totalPage <= 5)
                     @foreach(range(1, $totalPage) as $pages)
-                        <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
+                        <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif"
+                           style="color: #000000">{{ $pages }}</a>
                     @endforeach
                 @else
                     @if($page > 1)
-                        <a href="?page={{ $page - 1 }}"><<</a>
+                        <a href="?page={{ $page - 1 }}" style="color: #000000"><<</a>
                     @endif
                     @foreach(range($page, $page + 5) as $pages)
                         @if($pages <= $totalPage)
-                            <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
+                            <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif"
+                               style="color: #000000">{{ $pages }}</a>
                         @endif
                     @endforeach
                     @if($page < $totalPage)
-                        <a href="?page={{ $page + 1 }}">>></a>
+                        <a href="?page={{ $page + 1 }}" style="color: #000000">>></a>
                     @endif
                 @endif
             </div>
