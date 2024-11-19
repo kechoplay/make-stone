@@ -9,10 +9,23 @@
         </div>
         <div class="text-center">
             <div class="pagination">
-                @foreach(range(1, $totalPage) as $pages)
-                    <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif"
-                       style="color: #000000">{{ $pages }}</a>
-                @endforeach
+                @if($totalPage <= 5)
+                    @foreach(range(1, $totalPage) as $pages)
+                        <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
+                    @endforeach
+                @else
+                    @if($page > 1)
+                        <a href="?page={{ $page - 1 }}"><<</a>
+                    @endif
+                    @foreach(range($page, $page + 5) as $pages)
+                        @if($pages <= $totalPage)
+                            <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
+                        @endif
+                    @endforeach
+                    @if($page < $totalPage)
+                        <a href="?page={{ $page + 1 }}">>></a>
+                    @endif
+                @endif
             </div>
         </div>
     @else
@@ -51,13 +64,15 @@
                         @endforeach
                     @else
                         @if($page > 1)
-                            <a href="?page={{ $page - 1 }}">>></a>
+                            <a href="?page={{ $page - 1 }}"><<</a>
                         @endif
                         @foreach(range($page, $page + 5) as $pages)
-                            <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
+                            @if($pages <= $totalPage)
+                                <a href="?page={{ $pages }}" class="@if($page == $pages) active @endif">{{ $pages }}</a>
+                            @endif
                         @endforeach
                         @if($page < $totalPage)
-                            <a href="?page={{ $page + 1 }}"><<</a>
+                            <a href="?page={{ $page + 1 }}">>></a>
                         @endif
                     @endif
                 </div>
