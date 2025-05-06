@@ -7,7 +7,7 @@
                     <div class="footer__about">
                         <h2 style="font-weight: bold">PHO HIEN</h2>
                         <h2 style="font-weight: bold; margin-bottom: 20px;">JEWEL</h2>
-                        <p style="font-weight: bold">Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn</p>
+                        <p style="font-weight: bold">Find and enjoy beauty right next to you</p>
                     </div>
                 </div>
             @endif

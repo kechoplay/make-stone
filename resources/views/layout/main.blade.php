@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="PhoHien Jewel - Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn">
-    <meta name="keywords" content="PhoHien Jewel - Tìm kiếm, thưởng thức vẻ đẹp ngay bên bạn">
+    <meta name="description" content="PhoHien Jewel - Find and enjoy beauty right next to you">
+    <meta name="keywords" content="PhoHien Jewel - Find and enjoy beauty right next to you">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
